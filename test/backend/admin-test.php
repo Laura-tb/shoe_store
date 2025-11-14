@@ -1,7 +1,7 @@
-<!--  http://localhost/clases_desarrollo_servidor/trabajo_enfoque/test/backend/admin-test.php -->
+
 
 <?php
-require __DIR__ . '/../../backend/src/session.php';
+require __DIR__ . '/../../app/helpers/session.php';
 
 requireAdmin(); // Si no es admin, redirige y no llega aquí
 

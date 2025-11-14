@@ -1,7 +1,7 @@
 <?php
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-$cfgFile = __DIR__ . '/../config/config.local.php';
+$cfgFile = __DIR__ . '/config.local.php';
 if (!file_exists($cfgFile)) {
     die('Falta config.local.php');
 }
