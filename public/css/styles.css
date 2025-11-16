@@ -24,6 +24,11 @@ body {
     flex-direction: column;
 }
 
+h1 {
+    margin-bottom: 5%;
+    text-align: center;
+}
+
 /* Contenedor centrado */
 .container {
     max-width: var(--container);
@@ -387,4 +392,41 @@ input:focus {
     display: inline-block;
     vertical-align: top;
     min-height: 192px;
+}
+
+/*TABLA GESTIÓN DE USUARIOS */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.user-table td {
+    text-align: left;
+}
+
+.user-table thead {
+    background-color: #f4f4f4;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.user-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.user-table button {
+    margin-right: 5px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
 }

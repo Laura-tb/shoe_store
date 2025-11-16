@@ -33,7 +33,7 @@ include('../app/views/layout/head.php');
                     <!-- Option cards -->
                     <div class="options-card">
                         <div class="card">
-                            <a href="#">
+                            <a href="admin_users.php">
                                 <div>
                                     <span class="material-symbols-outlined text-3xl">group</span>
                                 </div>

@@ -7,14 +7,15 @@ if (!file_exists($cfgFile)) {
 }
 require $cfgFile;
 
-$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-$mysqli->set_charset('utf8mb4');
+
+$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+$db->set_charset('utf8mb4');
 
 //->Añadido nuevo 14.11.25
-if ($mysqli->connect_errno) {
-    die('Error de conexión: ' . $mysqli->connect_error);
+if ($db->connect_errno) {
+    die('Error de conexión: ' . $db->connect_error);
 }
 
-return $mysqli;
+return $db;
 //<-Añadido nuevo 14.11.25
 ?>

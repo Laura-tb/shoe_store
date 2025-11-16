@@ -15,7 +15,7 @@ if (!$email || $pass === '') {
     exit;
 }
 
-$stmt = $mysqli->prepare(
+$stmt = $db->prepare(
     'SELECT id, role, pass_hash FROM users WHERE email = ? LIMIT 1'
 );
 $stmt->bind_param('s', $email);

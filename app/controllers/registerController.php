@@ -19,7 +19,7 @@ if (!preg_match($pattern, $pass)) {
 }
 
 // Inserta en texto plano (solo para desarrollo)
-$stmt = $mysqli->prepare('INSERT INTO users (email, name, surname, pass_hash) VALUES (?, ?, ?, ?)');
+$stmt = $db->prepare('INSERT INTO users (email, name, surname, pass_hash) VALUES (?, ?, ?, ?)');
 $stmt->bind_param('ssss', $email, $name, $surname, $pass);
 
 try {
