@@ -1,3 +1,10 @@
+<?php 
+
+require __DIR__ . '/../app/helpers/session.php';
+requireRole('admin');
+
+?>
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -11,7 +18,7 @@ include('../app/views/layout/head.php');
 <body>
     <div class="page admin">
         <?php
-        include('../app/views/layout/header_admin.php');
+        include('../app/views/layout/navigation.php');
         ?>
 
         <main>

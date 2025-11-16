@@ -11,7 +11,7 @@ $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $pass  = $_POST['password'] ?? '';
 
 if (!$email || $pass === '') {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.html?e=val');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?e=val');
     exit;
 }
 
@@ -36,7 +36,7 @@ if ($user && $pass === $user['pass_hash']) {
     exit;
 } else {
     // Email o contraseña incorrectos
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.html?e=cred');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?e=cred');
     exit;
 }
 

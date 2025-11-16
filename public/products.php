@@ -1,3 +1,10 @@
+<?php 
+
+require __DIR__ . '/../app/helpers/session.php';
+requireRole('client');
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 

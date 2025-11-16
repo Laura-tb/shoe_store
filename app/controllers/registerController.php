@@ -10,11 +10,11 @@ $pass    = $_POST['password'] ?? '';
 $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
 
 if (!$email || !$name || !$surname) {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.html?e=val');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=val');
     exit;
 }
 if (!preg_match($pattern, $pass)) {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.html?e=pass');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=pass');
     exit;
 }
 
@@ -25,14 +25,14 @@ $stmt->bind_param('ssss', $email, $name, $surname, $pass);
 try {
     $stmt->execute();
     $stmt->close();
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.html?registered=1');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?registered=1');
     exit;
 } catch (mysqli_sql_exception $ex) {
     $stmt->close();
     if ((int)$ex->getCode() === 1062) {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.html?e=dup');
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=dup');
     } else {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.html?e=err');
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=err');
     }
     exit;
 }

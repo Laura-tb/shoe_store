@@ -1,6 +1,7 @@
 <?php
 
-// Inicia sesión si no está iniciada
+// Inicia sesión si no está iniciada. 
+//PENDIENTE SACAR DE FUNCIÓN Y PONER AL PRINCIPIO DE SESSION.PHP
 function startSession()
 {
     if (session_status() === PHP_SESSION_NONE) {
@@ -18,36 +19,31 @@ function createUserSession($user)
     $_SESSION['role']      = $user['role'];
 }
 
-// Comprueba si hay sesión iniciada
-function isLoggedIn()
+// Verifica que el usuario tenga el rol requerido. Si el rol en sesión no coincide, redirige al usuario a la página principal e impide continuar la ejecución.
+function requireRole(string $role): void
 {
     startSession();
-    return isset($_SESSION['user_id']);
-}
 
-// Devuelve true si el usuario es admin
-function isAdmin()
-{
-    startSession();
-    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
-}
-
-// Obliga a estar logueado
-function requireLogin()
-{
-    if (!isLoggedIn()) {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/login.html?e=auth');
+    if ($_SESSION['role'] !== $role) {
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/index.php');
         exit;
     }
 }
 
-// Obliga a ser admin
-function requireAdmin()
+// Comprueba si la sesión está iniciada y, si existe el role en sesión, redirige al usuario a su página correspondiente según su rol (admin o client).
+function isSessionInit()
 {
-    if (!isAdmin()) {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/index.html?e=denied');
-        exit;
-    } 
+    startSession();
+
+    if (isset($_SESSION['role'])) {
+        if ($_SESSION['role'] === 'admin') {
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/admin.php?e=auth');
+            exit;
+        } else if ($_SESSION['role'] === 'client') {
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/products.php?e=auth');
+            exit;
+        }
+    }
 }
 
 // Logout
@@ -56,4 +52,11 @@ function logout()
     startSession();
     $_SESSION = [];
     session_destroy();
+}
+
+// TEST- Comprueba si hay sesión iniciada- TEST
+function isLoggedIn()
+{
+    startSession();
+    return isset($_SESSION['user_id']);
 }

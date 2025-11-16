@@ -1,3 +1,8 @@
+<?php
+
+$logged = isset($_SESSION['user_id']);
+?>
+
 <header class="site-header">
     <div class="container">
         <div class="header-bar">
@@ -13,15 +18,25 @@
             </div>
 
             <nav class="main-nav" aria-label="Principal">
-                <a href="index.html">Inicio</a>
+                <a href="index.php">Inicio</a>
                 <a href="#">Hombre</a>
                 <a href="#">Mujer</a>
                 <a href="#">Ofertas</a>
             </nav>
 
             <div class="header-actions">
-                <button class="btn btn-primary"
-                    onclick="window.location.href='../app/helpers/logout.php'">Cerrar sesión</button>
+                <?php if ($logged): ?>
+                    <!--<button class="btn btn-primary btn-lg" onclick="window.location.href='../app/helpers/logout.php'">-->
+                    <button class="btn btn-primary btn-lg"
+                        onclick="window.location.href='<?= "../app/helpers/logout.php" ?>'">
+                        Cerrar Sesión</button>
+
+                <?php else: ?>
+                    <button class="btn btn-primary btn-lg" onclick="window.location.href='register-start.php'">Registrarse</button>
+                    <button class="btn btn-light btn-lg" onclick="window.location.href='login.php'">Iniciar Sesión</button>
+                <?php endif; ?>
+
+
             </div>
         </div>
     </div>

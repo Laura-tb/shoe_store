@@ -1,4 +1,4 @@
-
+<!-- http://localhost/clases_desarrollo_servidor/trabajo_enfoque/test/backend/session-test.php -->
 
 <?php
 require __DIR__ . '/../../app/helpers/session.php';
