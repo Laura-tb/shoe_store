@@ -21,7 +21,7 @@
   // Mensajes globales
   if (params.get('registered'))
     showToast('success', 'Registro correcto. Inicia sesión.');
-  if (params.get('ok') === '1' && location.pathname.endsWith('login.html')) {
+  if (params.get('ok') === '1' && location.pathname.endsWith('login.php')) {
     showToast('success', 'Has iniciado sesión correctamente.');
   }
 
@@ -31,7 +31,7 @@
     if (e === 'dup') showToast('warning', 'Ese email ya existe.');
     else if (e === 'val') showToast('error', 'Datos no válidos.');
     else if (e === 'cred') showToast('error', 'Credenciales incorrectas.');
-    else if (e === 'pass' && location.pathname.endsWith('register-start.html')) {
+    else if (e === 'pass' && location.pathname.endsWith('register-start.php')) {
       showToast(
         'error',
         'La contraseña debe tener 8 caracteres, mayúscula, minúscula, número y carácter especial.'

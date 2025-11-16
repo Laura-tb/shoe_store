@@ -1,0 +1,68 @@
+<!-- http://localhost/clases_desarrollo_servidor/trabajo_enfoque/public/login.php -->
+
+<?php
+
+require __DIR__ . '/../app/helpers/session.php';
+isSessionInit();
+
+?>
+
+<!doctype html>
+<html lang="es">
+
+<?php
+$title = "Login";
+include('../app/views/layout/head.php');
+?>
+
+<body>
+    <div class="page login">
+        <?php
+        include('../app/views/layout/navigation.php');
+        ?>
+
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <section class="card">
+                        <h1 class="title">Login</h1>
+
+
+                        <form method="post" action="/clases_desarrollo_servidor/trabajo_enfoque/app/controllers/loginController.php" autocomplete="off" novalidate>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" required />
+                            </div>
+
+                            <div class="field">
+                                <label for="password">Contraseña</label>
+                                <div class="password">
+                                    <input id="password" name="password" type="password" placeholder="••••••••"
+                                        title="Mínimo 8 caracteres con al menos una letra minúscula, una mayúscula, un carácter especial y un número."
+                                        required />
+
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary btn-lg" type="submit">Entrar</button>
+                        </form>
+
+                        <p class="link-wrap">
+                            <a href="register-start.php" class="link">Crear cuenta</a>
+                        </p>
+
+
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <?php
+        include('../app/views/layout/footer.php');
+        ?>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

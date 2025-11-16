@@ -161,8 +161,8 @@ body {
     padding: 24px;
     overflow: hidden;
     background:
-        linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .2)),
-        var(--hero-image) center/cover no-repeat;
+        url('../img/shoes_index.png') center/cover no-repeat,
+        linear-gradient(0deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .2));
 }
 
 @media (min-width:768px) {

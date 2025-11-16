@@ -3,15 +3,15 @@
 
 <?php
 
-require __DIR__ . '/../src/db.php';
-require __DIR__ . '/../src/session.php';
+require __DIR__ . '/../config/db.php';
+require __DIR__ . '/../helpers/session.php';
 
 
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $pass  = $_POST['password'] ?? '';
 
 if (!$email || $pass === '') {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/login.html?e=val');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?e=val');
     exit;
 }
 
@@ -29,14 +29,14 @@ if ($user && $pass === $user['pass_hash']) {
     createUserSession($user);
 
     if ($user['role'] === 'admin') {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/admin.html');
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/admin.php');
     } else {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/products.html');
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/products.php');
     }
     exit;
 } else {
     // Email o contraseña incorrectos
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/frontend/login.html?e=cred');
+    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?e=cred');
     exit;
 }
 
