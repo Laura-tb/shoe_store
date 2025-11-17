@@ -306,14 +306,15 @@ h1 {
 }
 
 label {
-    display: block;
+    display: grid;
     margin-bottom: 8px;
     font-size: 14px;
 }
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
+input[type="text"],
+select {
     width: 92%;
     height: 44px;
     border: 1px solid #e5e7eb;
@@ -325,7 +326,8 @@ input[type="text"] {
     transition: border-color .2s, box-shadow .2s;
 }
 
-input:focus {
+input:focus,
+select:focus {
     border-color: var(--accent);
     box-shadow: 0 0 0 4px rgba(23, 195, 178, .15);
 }
@@ -334,6 +336,7 @@ input:focus {
     width: 60%;
     display: block;
     margin: 0 auto;
+    margin-top: 6%;
 }
 
 
@@ -351,6 +354,14 @@ input:focus {
 .link:hover {
     text-decoration: underline
 }
+
+/* ----- SELECT DEL FORMULARIO USERS_UPDATE O USERS_CREATE (ROL) ----- */
+
+.field select {
+    width: 98%;
+}
+
+
 
 /* --- Mensaje de login efecto Toast --- */
 .toast {
