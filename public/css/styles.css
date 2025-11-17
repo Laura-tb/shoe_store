@@ -4,6 +4,7 @@
     --ink: #0e1116;
     --muted: #6b7280;
     --card: #ffffff;
+    --card_admin: #dbdee4;
     --shadow: 0 8px 20px rgba(0, 0, 0, .08);
     --radius: 16px;
     --radius-lg: 24px;
@@ -22,6 +23,11 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
+}
+
+h1 {
+    margin-bottom: 5%;
+    text-align: center;
 }
 
 /* Contenedor centrado */
@@ -387,4 +393,259 @@ input:focus {
     display: inline-block;
     vertical-align: top;
     min-height: 192px;
+}
+
+
+/* -------- PÁGINA ADMIN -------- */
+
+body.admin {
+    background: #d4d7dd; 
+}
+
+/* Panel central blanco con sombra */
+.admin-main {
+    padding: 40px 16px;
+}
+
+.admin-panel {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 40px 40px;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+/* Cabecera de bienvenida */
+.admin-header-text p {
+    margin: 0 0 8px;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+/* Grid de tarjetas */
+.admin-grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+/* Cards */
+.admin .card {
+    min-height: 180px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+.admin .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Icono redondo de la tarjeta */
+.admin-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2ff;
+    color: var(--primary);
+    font-size: 24px; /* material-symbols */
+}
+
+/* Textos de la tarjeta */
+.admin-card-body h2 {
+    margin: 0 0 4px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.admin-card-body p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+/* -------- ENLACES DENTRO DE CARDS -------- */
+
+.admin-grid .card a {
+    display: flex;
+    align-items: center;     
+    justify-content: flex-start; 
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Para que el hover funcione aunque el mouse esté sobre el <a> */
+.admin-grid .card:hover a h2 {
+    color: var(--primary);
+}
+
+.admin-grid .card a h2 {
+    transition: color .2s ease;
+}
+
+.admin-grid .card {
+    cursor: pointer;
+    width: auto;
+    background-color: #f3f5f9; 
+}
+
+/* Quitar subrayado al pasar el ratón */
+.admin-grid .card a:hover {
+    text-decoration: none;
+}
+
+
+
+/* Responsive */
+@media (max-width: 640px) {
+    .admin-panel {
+        padding: 24px 20px 28px;
+    }
+
+    .admin-header-text h1 {
+        font-size: 24px;
+    }
+}
+
+
+
+
+/* ---------- MAIN GESTIÓN DE USUARIOS ---------- */
+
+.admin_users main {
+    padding: 40px 16px 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.admin_users .hero {
+    width: 100%;
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 32px 40px 40px;
+}
+
+.admin_users .hero h1 {
+    margin: 0 0 40px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+/* enlace “Crear usuario” */
+.admin_users .hero > div:first-of-type {
+    margin-bottom: 3%;
+}
+
+.admin_users .hero a  {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.admin_users .hero a:hover {
+    text-decoration: underline;
+}
+
+/* contenedor tabla */
+.admin_users .hero .container {
+    margin-top: 8px;
+    padding: 0;
+}
+
+/* ---------- TABLA DE USUARIOS ---------- */
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+/* cabecera */
+.user-table thead {
+    background-color: #f9fafb;
+}
+
+.user-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* filas */
+.user-table td {
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.user-table tr:nth-child(even) {
+    background-color: #fcfdff;
+}
+
+.user-table tr:hover {
+    background-color: #eff6ff;
+}
+
+/* columna acciones */
+.user-table td:last-child {
+    white-space: nowrap;
+    text-align: left;
+}
+
+.user-table td:last-child a {
+    font-size: 13px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.user-table td:last-child a:first-child {
+    color: var(--primary); /* Editar */
+    margin-right: 23%;
+}
+
+.user-table td:last-child a:last-child {
+    color: #ef4444; /* Eliminar */
+}
+
+.user-table td:last-child a:hover {
+    text-decoration: underline;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+    .admin_users .hero {
+        padding: 24px 20px 28px;
+    }
+
+    .user-table {
+        font-size: 13px;
+    }
+
+    .user-table th,
+    .user-table td {
+        padding: 8px 10px;
+    }
 }
