@@ -1,3 +1,9 @@
+<!-- VISTA LISTADO -->
+<!-- 
+- Solo presentación (HTML + uso de $users).
+- No hace consultas a BD ni redirecciones.
+--> 
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -18,7 +24,7 @@ include('layout/head.php');
             <section class="hero">
                 <h1>Gestión de Usuarios</h1>
                 <div>
-                    <button>Crear usuario</button>
+                    <a href="users_create.php">Crear usuario</a>
                 </div>
                 <div class="container">
                     <table class="user-table">
@@ -44,8 +50,8 @@ include('layout/head.php');
                                     <td><?= $u['role'] ?></td>
                                     <td><?= $u['created_at'] ?></td>
                                     <td>
-                                        <a href="update_users.php?id=<?= $u['id'] ?>">Editar</a>
-                                        <a href="delete_users.php?id=<?= $u['id'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
+                                        <a href="users_update.php?id=<?= $u['id'] ?>">Editar</a>
+                                        <a href="users_delete.php?id=<?= $u['id'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

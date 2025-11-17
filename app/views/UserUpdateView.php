@@ -1,3 +1,5 @@
+<!-- VISTA DE FORMULARIO DE EDICIÓN -->
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -16,18 +18,25 @@ include('layout/head.php');
 
         <main>
             <section class="hero">
-                <h1>Gestión de Usuarios</h1>
-                <div>
-                    <button>Crear usuario</button>
-                </div>
+                <h1><?= $mode === 'create' ? 'Crear usuario' : 'Editar usuario' ?></h1>
+
+
                 <div class="container">
                     <form method="POST">
                         <label>Nombre:
                             <input type="text" name="name" value="<?= $user['name'] ?>">
                         </label>
 
+                        <label>Apellidos:
+                            <input type="text" name="surname" value="<?= $user['surname'] ?>">
+                        </label>
+
                         <label>Email:
                             <input type="email" name="email" value="<?= $user['email'] ?>">
+                        </label>
+
+                        <label>Contraseña:
+                            <input type="text" name="pass_hash" value="<?= $user['pass_hash'] ?>">
                         </label>
 
                         <label>Rol:
@@ -37,7 +46,9 @@ include('layout/head.php');
                             </select>
                         </label>
 
-                        <button type="submit">Guardar cambios</button>
+                        <button type="submit">
+                            <?= $mode === 'create' ? 'Crear' : 'Guardar cambios' ?>
+                        </button>
                     </form>
 
                 </div>

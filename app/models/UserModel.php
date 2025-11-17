@@ -1,3 +1,9 @@
+<!-- MODELO -->
+<!--
+- Toda la lógica de acceso a tabla users (SELECT, UPDATE, etc).
+-->
+
+
 <?php
 class UserModel
 {
@@ -9,19 +15,13 @@ class UserModel
 
     public static function getById(mysqli $db, int $id): ?array
     {
-        $stmt = $db->prepare("SELECT id, email, name, surname, role FROM users WHERE id=? LIMIT 1");
+        $stmt = $db->prepare("SELECT id, email, name, surname, role, pass_hash FROM users WHERE id=? LIMIT 1");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $res = $stmt->get_result();
         return $res->fetch_assoc() ?: null;
     }
 
-    public static function update2(mysqli $db, int $id, string $email, string $name, string $surname, string $pass_hash, string $role): bool
-    {
-        $stmt = $db->prepare("UPDATE users SET email=?, name=?, surname=?, pass_hash=?, role=? WHERE id=?");
-        $stmt->bind_param("sssssi", $email, $name, $surname, $pass_hash, $role, $id);
-        return $stmt->execute();
-    }
 
     public static function update(
         mysqli $db,
@@ -29,14 +29,15 @@ class UserModel
         string $name,
         string $surname,
         string $email,
+        string $pass_hash,
         string $role
     ): bool {
         $stmt = $db->prepare(
             "UPDATE users
-             SET name = ?, surname = ?, email = ?, role = ?
+             SET name = ?, surname = ?, email = ?, pass_hash = ?, role = ?
              WHERE id = ?"
         );
-        $stmt->bind_param("ssssi", $name, $surname, $email, $role, $id);
+        $stmt->bind_param("sssssi", $name, $surname, $email, $pass_hash, $role, $id);
         return $stmt->execute();
     }
 
@@ -46,4 +47,20 @@ class UserModel
         $stmt->bind_param("i", $id);
         return $stmt->execute();
     }
+
+    public static function create(
+    mysqli $db,
+    string $email,
+    string $name,
+    string $surname,    
+    string $pass_hash,
+    string $role
+): bool {
+    $stmt = $db->prepare(
+        "INSERT INTO users (email, name, surname, pass_hash, role, created_at)
+         VALUES (?, ?, ?, ?, ?, NOW())"
+    );
+    $stmt->bind_param("sssss", $email, $name, $surname, $pass_hash, $role);
+    return $stmt->execute();
+}
 }
