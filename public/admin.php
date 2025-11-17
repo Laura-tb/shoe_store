@@ -21,44 +21,45 @@ include('../app/views/layout/head.php');
         include('../app/views/layout/navigation.php');
         ?>
 
-        <main>
-            <section class="hero">
-                <div class="container">
+        <main class="admin-main">
+            <section class="admin-panel">               
 
-                    <div class="hero-text">
+                    <div class="admin-header-text">
                         <p>
                             Selecciona una opción para comenzar a gestionar
                         </p>
                     </div>
-                    <!-- Option cards -->
-                    <div class="options-card">
-                        <div class="card">
+
+                    <!-- Cards -->
+                    <div class="admin-grid">
+                        <article class="card">
                             <a href="admin_users.php">
-                                <div>
+                                <div class="admin-card-icon">
                                     <span class="material-symbols-outlined text-3xl">group</span>
                                 </div>
-                                <div>
-                                    <p>Gestión de Usuarios</p>
+                                <div class="admin-card-body">
+                                    <h2>Gestión de Usuarios</h2>
                                     <p>Visualiza, crea, edita y elimina las cuentas de los usuarios.</p>
                                 </div>
                             </a>
-                        </div>
-                        <div class="card">
+                        </article>
+
+                        <article class="card">
                             <a href="#">
-                                <div>
+                                <div class="admin-card-icon">
                                     <span class="material-symbols-outlined text-3xl">store</span>
                                 </div>
-                                <div>
-                                    <p>Gestión de Productos</p>
+                                <div class="admin-card-body">
+                                    <h2>Gestión de Productos</h2>
                                     <p>Añade nuevas zapatillas, actualiza el stock, los precios y los detalles del
                                         producto.
                                     </p>
                                 </div>
                             </a>
-                        </div>
+                        </article>
                     </div>
 
-                </div>
+                
             </section>
         </main>
 

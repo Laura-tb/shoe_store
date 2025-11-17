@@ -22,6 +22,8 @@ include('layout/head.php');
 
         <main>
             <section class="hero">
+                <a href="admin.php">Volver</a>
+
                 <h1>Gestión de Usuarios</h1>
                 <div>
                     <a href="users_create.php">Crear usuario</a>
@@ -37,6 +39,7 @@ include('layout/head.php');
                                 <th>CONTRASEÑA</th>
                                 <th>ROL</th>
                                 <th>FECHA CREACIÓN</th>
+                                <th>ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
