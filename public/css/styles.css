@@ -543,13 +543,15 @@ body.admin {
 
 /* ---------- MAIN GESTIÓN DE USUARIOS ---------- */
 
-.admin_users main {
+.admin_users main,
+.admin_products main {
     padding: 40px 16px 60px;
     display: flex;
     justify-content: center;
 }
 
-.admin_users .hero {
+.admin_users .hero,
+.admin_products .hero {
     width: 100%;
     background: var(--card);
     border-radius: var(--radius-lg);
@@ -557,7 +559,8 @@ body.admin {
     padding: 32px 40px 40px;
 }
 
-.admin_users .hero h1 {
+.admin_users .hero h1,
+.admin_products .hero h1 {
     margin: 0 0 40px;
     text-align: center;
     font-size: 28px;
@@ -565,23 +568,27 @@ body.admin {
 }
 
 /* enlace “Crear usuario” */
-.admin_users .hero > div:first-of-type {
+.admin_users .hero > div:first-of-type,
+.admin_products .hero > div:first-of-type {
     margin-bottom: 3%;
 }
 
-.admin_users .hero a  {
+.admin_users .hero a,
+.admin_products .hero a  {
     font-size: 14px;
     text-decoration: none;
     color: var(--primary);
     font-weight: 600;
 }
 
-.admin_users .hero a:hover {
+.admin_users .hero a:hover,
+.admin_products .hero a:hover {
     text-decoration: underline;
 }
 
 /* contenedor tabla */
-.admin_users .hero .container {
+.admin_users .hero .container,
+.admin_products .hero .container {
     margin-top: 8px;
     padding: 0;
 }
@@ -651,7 +658,8 @@ body.admin {
 
 /* responsive */
 @media (max-width: 768px) {
-    .admin_users .hero {
+    .admin_users .hero,
+    .admin_products .hero {
         padding: 24px 20px 28px;
     }
 

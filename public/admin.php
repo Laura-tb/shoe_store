@@ -45,7 +45,7 @@ include('../app/views/layout/head.php');
                         </article>
 
                         <article class="card">
-                            <a href="#">
+                            <a href="admin_products.php">
                                 <div class="admin-card-icon">
                                     <span class="material-symbols-outlined text-3xl">store</span>
                                 </div>
