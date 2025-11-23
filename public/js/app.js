@@ -28,14 +28,71 @@
   // Mensajes de error
   const e = params.get('e');
   if (e) {
-    if (e === 'dup') showToast('warning', 'Ese email ya existe.');
-    else if (e === 'val') showToast('error', 'Datos no válidos.');
-    else if (e === 'cred') showToast('error', 'Credenciales incorrectas.');
-    else if (e === 'pass' && location.pathname.endsWith('register-start.php')) {
+    if (e === 'dup') {
+      showToast('warning', 'Ese email ya existe.');
+    } else if (e === 'val') {
+      showToast('error', 'Datos no válidos.');
+    } else if (e === 'cred') {
+      showToast('error', 'Credenciales incorrectas.');
+    } else if (e === 'pass') {
       showToast(
         'error',
-        'La contraseña debe tener 8 caracteres, mayúscula, minúscula, número y carácter especial.'
+        'La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula, número y carácter especial.'
       );
-    } else showToast('error', 'Ha ocurrido un error.');
+    } else {
+      showToast('error', 'Ha ocurrido un error.');
+    }
   }
 })();
+
+
+const form =
+  document.getElementById("register-form") ||
+  document.getElementById("login-form") ||
+  document.getElementById("user-form");
+
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (validate(form)) form.submit();
+  });
+}
+
+function validate(form) {
+
+  let ok = true;
+
+  // Limpia errores anteriores
+  form.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+  // Obtiene campos SOLO si existen en el formulario
+  const emailInput = form.querySelector("#email");
+  const passInput  = form.querySelector("#password");
+  const nameInput  = form.querySelector("#name"); 
+
+  const regexEmail = /^\S+@\S+\.\S+$/;
+  const regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+  // ---------- EMAIL ----------
+  if (emailInput && !regexEmail.test(emailInput.value.trim())) {
+    form.querySelector("#emailError").textContent = "Email no válido";
+    ok = false;
+  }
+
+  // ---------- NOMBRE ----------
+  if (nameInput && nameInput.value.trim() === "") {
+    form.querySelector("#nameError").textContent = "Campo obligatorio";
+    ok = false;
+  }
+
+  // ---------- PASSWORD ----------
+
+  if (passInput && !regexPass.test(passInput.value.trim())) {
+    form.querySelector("#passwordError").textContent =
+      "La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula, número y carácter especial.";
+    ok = false;
+  }
+
+  return ok;
+
+}

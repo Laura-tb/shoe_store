@@ -12,9 +12,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass_hash = trim($_POST['pass_hash'] ?? '');
     $role     = trim($_POST['role'] ?? '');
 
+
+    // --- VALIDACIONES ---
+
+    // Validación de email correcto
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        header('Location: users_create.php?e=val');
+        exit;
+    }
+
+    // Validación: email duplicado
+    if (UserModel::existsByEmail($db, $email)) {
+        header('Location: users_create.php?e=dup');
+        exit;
+    }
+
+    // Validación de contraseña fuerte
+    $regexPass = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+    if (!preg_match($regexPass, $pass_hash)) {
+        header('Location: users_create.php?e=pass');
+        exit;
+    }
+
+    // Crear usuario
     UserModel::create($db, $email, $name, $surname, $pass_hash, $role);
 
-    header('Location: admin_users.php');
+    header('Location: admin_users.php?registered=1');
     exit;
 }
 

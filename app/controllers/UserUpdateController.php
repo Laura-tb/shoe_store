@@ -19,6 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass_hash   = trim($_POST['pass_hash'] ?? '');
     $role    = trim($_POST['role'] ?? '');
 
+    /************************************************************* */
+    // ¿AÑADIR MISMAS VALIDACIONES QUE USERCREATECONTROLLER.PHP?
+    /************************************************************** */
+    
     UserModel::update($db, $id, $name, $surname, $email, $pass_hash, $role);
 
     header("Location: admin_users.php");

@@ -23,28 +23,31 @@ include('layout/head.php');
 
                         <h1 class="title"><?= $mode === 'create' ? 'Crear usuario' : 'Editar usuario' ?></h1>
 
-                        <form method="POST">
+                        <form method="POST" id="user-form">
                             <div class="field">
                                 <label>Nombre:
-                                    <input type="text" name="name" value="<?= $user['name'] ?>">
+                                    <input id="name" type="text" name="name" value="<?= $user['name'] ?>">
+                                    <span class="error" id="nameError"></span>
                                 </label>
                             </div>
 
                             <div class="field">
                                 <label>Apellidos:
-                                    <input type="text" name="surname" value="<?= $user['surname'] ?>">
+                                    <input id="surname" type="text" name="surname" value="<?= $user['surname'] ?>">
                                 </label>
                             </div>
 
                             <div class="field">
                                 <label>Email:
-                                    <input type="email" name="email" value="<?= $user['email'] ?>">
+                                    <input id="email" type="email" name="email" value="<?= $user['email'] ?>">
+                                    <span class="error" id="emailError"></span>
                                 </label>
                             </div>
 
                             <div class="field">
                                 <label>Contraseña:
-                                    <input type="text" name="pass_hash" value="<?= $user['pass_hash'] ?>">
+                                    <input id="password" type="text" name="pass_hash" value="<?= $user['pass_hash'] ?>">
+                                    <span class="error" id="passwordError"></span>
                                 </label>
                             </div>
 
@@ -71,6 +74,8 @@ include('layout/head.php');
         include('layout/footer.php');
         ?>
     </div>
+
+    <script src="js/app.js"></script>
 </body>
 
 </html>

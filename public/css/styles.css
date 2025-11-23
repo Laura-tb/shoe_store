@@ -338,6 +338,10 @@ select:focus {
     margin: 0 auto;
     margin-top: 6%;
 }
+.error {
+  color: red;
+  font-size: 12px;
+}
 
 
 /* Enlace inferior */
