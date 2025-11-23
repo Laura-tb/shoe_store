@@ -28,10 +28,11 @@ include('../app/views/layout/head.php');
                         <h1 class="title">Login</h1>
 
 
-                        <form method="post" action="/clases_desarrollo_servidor/trabajo_enfoque/app/controllers/loginController.php" autocomplete="off" novalidate>
+                        <form method="post" id="login-form" action="/clases_desarrollo_servidor/trabajo_enfoque/app/controllers/loginController.php" autocomplete="off" novalidate>
                             <div class="field">
                                 <label for="email">Email</label>
                                 <input id="email" name="email" type="email" required />
+                                <span class="error" id="emailError"></span>
                             </div>
 
                             <div class="field">
@@ -40,7 +41,7 @@ include('../app/views/layout/head.php');
                                     <input id="password" name="password" type="password" placeholder="••••••••"
                                         title="Mínimo 8 caracteres con al menos una letra minúscula, una mayúscula, un carácter especial y un número."
                                         required />
-
+                                    <span class="error" id="passwordError"></span>
                                 </div>
                             </div>
 

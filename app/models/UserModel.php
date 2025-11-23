@@ -63,4 +63,10 @@ class UserModel
     $stmt->bind_param("sssss", $email, $name, $surname, $pass_hash, $role);
     return $stmt->execute();
 }
+
+public static function existsByEmail($db, $email) {
+    $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    return $stmt->fetch() ? true : false;
+}
 }

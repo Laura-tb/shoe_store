@@ -1,4 +1,4 @@
-<?php 
+<?php
 require __DIR__ . '/../app/helpers/session.php';
 startSession();
 ?>
@@ -24,29 +24,32 @@ include('../app/views/layout/head.php');
                         <h1 class="title">Registro</h1>
 
 
-                        <form method="post" action="/clases_desarrollo_servidor/trabajo_enfoque/app/controllers/registerController.php" autocomplete="off" novalidate>
+                        <form method="post" id="register-form" action="/clases_desarrollo_servidor/trabajo_enfoque/app/controllers/registerController.php" autocomplete="off" novalidate>
                             <div class="field">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" type="email" placeholder="tuemail@email.com" required />
+                                <input id="email" name="email" type="email" placeholder="tuemail@email.com" />
+                                <span class="error" id="emailError"></span>
                             </div>
 
                             <div class="field">
                                 <label for="name">Nombre</label>
-                                <input id="name" name="name" type="text" placeholder="Tu nombre" required />
+                                <input id="name" name="name" type="text" placeholder="Tu nombre" />
+                                <span class="error" id="nameError"></span>
                             </div>
 
                             <div class="field">
                                 <label for="surname">Apellidos</label>
-                                <input id="surname" name="surname" type="text" placeholder="Tus apellidos" required />
+                                <input id="surname" name="surname" type="text" placeholder="Tus apellidos" />
                             </div>
 
                             <div class="field">
                                 <label for="password">Contraseña</label>
                                 <div class="password">
                                     <input id="password" name="password" type="password" placeholder="••••••••"
-                                        title="Mínimo 8 caracteres con al menos una letra minúscula, una mayúscula, un carácter especial y un número."
-                                        required />
+                                        title="Mínimo 8 caracteres con al menos una letra minúscula, una mayúscula, un carácter especial y un número." />
+                                    <span class="error" id="passwordError"></span>
                                 </div>
+
                             </div>
 
                             <button class="btn btn-primary btn-lg" type="submit">Crear cuenta</button>
