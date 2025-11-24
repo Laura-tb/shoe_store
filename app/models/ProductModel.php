@@ -46,18 +46,45 @@ class ProductModel
         return $stmt->execute();
     }
 
-    public static function create(
+    public static function create2(
         mysqli $db,
         string $image_product,
         string $name_product,
-        string $price_product,
-        string $stock_product
+        float $price_product,
+        int $stock_product
     ): bool {
         $stmt = $db->prepare(
             "INSERT INTO products (image_product, name_product, price_product, stock_product, created_at)
          VALUES (?, ?, ?, ?, NOW())"
         );
         $stmt->bind_param("ssss", $image_product, $name_product, $price_product, $stock_product);
+        return $stmt->execute();
+    }
+
+    // INSERT sin imagen (image_product NULL, created_at automático)
+    public static function create(mysqli $db, string $name_product, float $price_product, int $stock_product): ?int
+    {
+        $stmt = $db->prepare("
+            INSERT INTO products (name_product, price_product, stock_product)
+            VALUES (?, ?, ?)
+        ");
+        $stmt->bind_param("sdi", $name_product, $price_product, $stock_product); // s = string, d = decimal, i = int
+
+        if (!$stmt->execute()) {
+            return null;
+        }
+        return $db->insert_id;          // ← id_product AUTOINCREMENT
+    }
+
+    public static function updateImage(mysqli $db, int $id, string $fileName): bool
+    {
+        $stmt = $db->prepare("
+            UPDATE products
+            SET image_product = ?
+            WHERE id_product = ?
+        ");
+        $stmt->bind_param("si", $fileName, $id);
+
         return $stmt->execute();
     }
 }

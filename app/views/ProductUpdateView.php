@@ -23,7 +23,7 @@ include('layout/head.php');
 
                         <h1 class="title"><?= $mode === 'create' ? 'Crear producto' : 'Editar producto' ?></h1>
 
-                        <form method="POST" id="product-form">
+                        <form method="POST" id="product-form" enctype="multipart/form-data">
 
                             <div class="field">
                                 <label>Imagen:
@@ -40,14 +40,17 @@ include('layout/head.php');
 
                             <div class="field">
                                 <label>Precio:
-                                    <input id="price_product" type="text" name="price_product" value="<?= $products['price_product'] ?>">
+                                    <input id="price_product" type="number" 
+                                    step="0.01"
+                                    min="0"
+                                    lang="es" name="price_product" value="<?= $products['price_product'] ?>">
                                     <span class="error" id="nameError"></span>
                                 </label>
                             </div>
 
                             <div class="field">
                                 <label>Stock:
-                                    <input id="stock_product" type="text" name="stock_product" value="<?= $products['stock_product'] ?>">
+                                    <input id="stock_product" type="number" name="stock_product" value="<?= $products['stock_product'] ?>">
                                     <span class="error" id="nameError"></span>
                                 </label>
                             </div>
