@@ -314,6 +314,7 @@ label {
 input[type="email"],
 input[type="password"],
 input[type="text"],
+input[type="number"],
 select {
     width: 92%;
     height: 44px;
@@ -324,6 +325,10 @@ select {
     outline: none;
     background: #fff;
     transition: border-color .2s, box-shadow .2s;
+}
+
+input[type="file"] {
+    margin: 3%;
 }
 
 input:focus,
@@ -343,6 +348,14 @@ select:focus {
   font-size: 12px;
 }
 
+/* Imagen producto actual */
+.product-image-preview {
+    max-width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;   
+    display: block;     
+    margin: 8px auto;  
+}
 
 /* Enlace inferior */
 .link-wrap {
@@ -541,7 +554,7 @@ body.admin {
 
 
 
-/* ---------- MAIN GESTIÓN DE USUARIOS ---------- */
+/* ---------- MAIN GESTIÓN DE USUARIOS/PRODUCTOS ---------- */
 
 .admin_users main,
 .admin_products main {
@@ -574,7 +587,8 @@ body.admin {
 }
 
 .admin_users .hero a,
-.admin_products .hero a  {
+.admin_products .hero a,
+.login .hero a  {
     font-size: 14px;
     text-decoration: none;
     color: var(--primary);
@@ -582,7 +596,8 @@ body.admin {
 }
 
 .admin_users .hero a:hover,
-.admin_products .hero a:hover {
+.admin_products .hero a:hover,
+.login .hero a:hover {
     text-decoration: underline;
 }
 
@@ -593,7 +608,7 @@ body.admin {
     padding: 0;
 }
 
-/* ---------- TABLA DE USUARIOS ---------- */
+/* ---------- TABLA DE USUARIOS/PRODUCTOS ---------- */
 
 .user-table {
     width: 100%;

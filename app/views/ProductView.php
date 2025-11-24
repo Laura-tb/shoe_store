@@ -59,9 +59,6 @@ include('layout/head.php');
 
                         </tbody>
                     </table>
-
-
-
                 </div>
             </section>
         </main>

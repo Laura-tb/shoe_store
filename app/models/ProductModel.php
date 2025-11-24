@@ -73,7 +73,7 @@ class ProductModel
         if (!$stmt->execute()) {
             return null;
         }
-        return $db->insert_id;          // ← id_product AUTOINCREMENT
+        return $db->insert_id;        
     }
 
     public static function updateImage(mysqli $db, int $id, string $fileName): bool

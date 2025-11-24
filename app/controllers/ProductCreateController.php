@@ -8,8 +8,10 @@ require __DIR__ . '/../models/ProductModel.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //$image_product    = trim($_POST['image_product'] ?? '');
     $name_product     = trim($_POST['name_product'] ?? '');
+
     $price_raw  = str_replace(',', '.', $_POST['price_product'] ?? '0'); //Convertir coma a punto
     $price_product = number_format((float)$price_raw, 2, '.', ''); //Convertir a float y mantener 2 decimales
+    
     $stock_product = (int)($_POST['stock_product'] ?? 0);
 
     // Crear producto
