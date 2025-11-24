@@ -46,10 +46,12 @@
 })();
 
 
+// VALIDACIÓN DE FORMULARIOS
 const form =
   document.getElementById("register-form") ||
   document.getElementById("login-form") ||
-  document.getElementById("user-form");
+  document.getElementById("user-form") ||
+  document.getElementById("product-form");
 
 if (form) {
   form.addEventListener("submit", (e) => {
@@ -67,8 +69,11 @@ function validate(form) {
 
   // Obtiene campos SOLO si existen en el formulario
   const emailInput = form.querySelector("#email");
-  const passInput  = form.querySelector("#password");
-  const nameInput  = form.querySelector("#name"); 
+  const passInput = form.querySelector("#password");
+  const nameInput = form.querySelector("#name") || form.querySelector("#name_product");
+  const priceInput = form.querySelector("#price_product");
+  const stockInput = form.querySelector("#stock_product");
+
 
   const regexEmail = /^\S+@\S+\.\S+$/;
   const regexPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
@@ -90,6 +95,17 @@ function validate(form) {
   if (passInput && !regexPass.test(passInput.value.trim())) {
     form.querySelector("#passwordError").textContent =
       "La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula, número y carácter especial.";
+    ok = false;
+  }
+
+  // --- CAMPOS PRODUCTO ---
+  if (priceInput && priceInput.value.trim() === "") {
+    form.querySelector("#priceError").textContent = "Campo obligatorio";
+    ok = false;
+  }
+
+  if (stockInput && stockInput.value.trim() === "") {
+    form.querySelector("#stockError").textContent = "Campo obligatorio";
     ok = false;
   }
 

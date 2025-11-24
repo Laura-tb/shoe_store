@@ -20,6 +20,7 @@ include('layout/head.php');
             <section class="hero">
                 <div class="container">
                     <section class="card">
+                        <a href="admin_users.php">Volver</a>
 
                         <h1 class="title"><?= $mode === 'create' ? 'Crear usuario' : 'Editar usuario' ?></h1>
 

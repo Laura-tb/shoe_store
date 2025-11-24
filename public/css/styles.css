@@ -314,6 +314,7 @@ label {
 input[type="email"],
 input[type="password"],
 input[type="text"],
+input[type="number"],
 select {
     width: 92%;
     height: 44px;
@@ -324,6 +325,10 @@ select {
     outline: none;
     background: #fff;
     transition: border-color .2s, box-shadow .2s;
+}
+
+input[type="file"] {
+    margin: 3%;
 }
 
 input:focus,
@@ -343,6 +348,14 @@ select:focus {
   font-size: 12px;
 }
 
+/* Imagen producto actual */
+.product-image-preview {
+    max-width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;   
+    display: block;     
+    margin: 8px auto;  
+}
 
 /* Enlace inferior */
 .link-wrap {
@@ -541,15 +554,17 @@ body.admin {
 
 
 
-/* ---------- MAIN GESTIÓN DE USUARIOS ---------- */
+/* ---------- MAIN GESTIÓN DE USUARIOS/PRODUCTOS ---------- */
 
-.admin_users main {
+.admin_users main,
+.admin_products main {
     padding: 40px 16px 60px;
     display: flex;
     justify-content: center;
 }
 
-.admin_users .hero {
+.admin_users .hero,
+.admin_products .hero {
     width: 100%;
     background: var(--card);
     border-radius: var(--radius-lg);
@@ -557,7 +572,8 @@ body.admin {
     padding: 32px 40px 40px;
 }
 
-.admin_users .hero h1 {
+.admin_users .hero h1,
+.admin_products .hero h1 {
     margin: 0 0 40px;
     text-align: center;
     font-size: 28px;
@@ -565,28 +581,34 @@ body.admin {
 }
 
 /* enlace “Crear usuario” */
-.admin_users .hero > div:first-of-type {
+.admin_users .hero > div:first-of-type,
+.admin_products .hero > div:first-of-type {
     margin-bottom: 3%;
 }
 
-.admin_users .hero a  {
+.admin_users .hero a,
+.admin_products .hero a,
+.login .hero a  {
     font-size: 14px;
     text-decoration: none;
     color: var(--primary);
     font-weight: 600;
 }
 
-.admin_users .hero a:hover {
+.admin_users .hero a:hover,
+.admin_products .hero a:hover,
+.login .hero a:hover {
     text-decoration: underline;
 }
 
 /* contenedor tabla */
-.admin_users .hero .container {
+.admin_users .hero .container,
+.admin_products .hero .container {
     margin-top: 8px;
     padding: 0;
 }
 
-/* ---------- TABLA DE USUARIOS ---------- */
+/* ---------- TABLA DE USUARIOS/PRODUCTOS ---------- */
 
 .user-table {
     width: 100%;
@@ -651,7 +673,8 @@ body.admin {
 
 /* responsive */
 @media (max-width: 768px) {
-    .admin_users .hero {
+    .admin_users .hero,
+    .admin_products .hero {
         padding: 24px 20px 28px;
     }
 

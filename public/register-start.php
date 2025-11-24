@@ -21,6 +21,8 @@ include('../app/views/layout/head.php');
             <section class="hero">
                 <div class="container">
                     <section class="card">
+                        <a href="index.php">Volver</a>
+
                         <h1 class="title">Registro</h1>
 
 
