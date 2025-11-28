@@ -19,14 +19,16 @@ $logged = isset($_SESSION['user_id']);
 
             <nav class="main-nav" aria-label="Principal">
                 <a href="index.php">Inicio</a>
-                <a href="#">Hombre</a>
-                <a href="#">Mujer</a>
-                <a href="#">Ofertas</a>
+                <a href="products.php">Productos</a>
             </nav>
 
             <div class="header-actions">
                 <?php if ($logged): ?>
                     <!--<button class="btn btn-primary btn-lg" onclick="window.location.href='../app/helpers/logout.php'">-->
+                    <button class="btn btn-light btn-lg"
+                        onclick="window.location.href='cart.php'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" /><path d="M9 11v-5a3 3 0 0 1 6 0v5" /></svg>
+                    </button>
                     <button class="btn btn-primary btn-lg"
                         onclick="window.location.href='<?= "../app/helpers/logout.php" ?>'">
                         Cerrar Sesión</button>
