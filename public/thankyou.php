@@ -40,9 +40,6 @@ include('../app/views/layout/head.php');
                                 Tu pedido ha sido procesado correctamente.
                             </p>
 
-                            <a class="thankyou-btn" href="products.php">
-                                Volver a la tienda
-                            </a>
                             <div class="order-summary">
                                 <div class="order-summary-header">
                                     <span>Nº pedido</span>
@@ -57,11 +54,6 @@ include('../app/views/layout/head.php');
                                     <span><?= $date->format('d/m/Y') ?></span>
                                 </div>
 
-                                <div class="order-summary-row">
-                                    <span>Importe total</span>
-                                    <span><?= number_format((float)$order['total'], 2, ',', '.') ?>€</span>
-                                </div>
-
                                 <div class="order-summary-divider"></div>
 
                                 <div class="order-summary-items-title">Artículos</div>
@@ -69,19 +61,30 @@ include('../app/views/layout/head.php');
                                 <ul class="order-summary-items">
                                     <?php foreach ($items as $item): ?>
                                         <li class="order-summary-item">
-                                            <div class="order-summary-item-name">
+                                            <div class="order-summary-row">
                                                 <?= htmlspecialchars($item['name_product']) ?>
                                             </div>
                                             <div class="order-summary-item-qty">
                                                 × <?= (int)$item['qty_order_items'] ?>
                                             </div>
-                                            <div class="order-summary-item-price">
+                                            <div class="order-summary-row">
                                                 <?= number_format((float)$item['unit_price_order_items'], 2, ',', '.') ?>€
                                             </div>
                                         </li>
                                     <?php endforeach; ?>
                                 </ul>
+                                <div class="order-summary-divider"></div>
+
+                                <div class="order-summary-header">
+                                    <span>Importe total</span>
+                                    <span class="order-summary-id"><?= number_format((float)$order['total'], 2, ',', '.') ?>€</span>
+                                </div>
+
                             </div>
+
+                            <a class="thankyou-btn" href="index.php">
+                                Volver a la tienda
+                            </a>
 
                         </div>
 

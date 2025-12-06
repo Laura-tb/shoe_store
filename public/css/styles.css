@@ -54,17 +54,17 @@ h1 {
     gap: 12px;
 }
 
-.brand-icon {
-    width: 24px;
-    height: 24px;
-    color: var(--primary)
+.brand-icon img {
+   
+    height: 40px
 }
 
 .brand-name {
     font-size: 20px;
     font-weight: 800;
     margin: 0;
-    letter-spacing: -.015em
+    letter-spacing: -.015em;
+    text-decoration: none;
 }
 
 /* Navegación */
@@ -75,16 +75,7 @@ h1 {
     flex: 1;
 }
 
-.main-nav a {
-    text-decoration: none;
-    color: #374151;
-    font-size: 14px;
-    font-weight: 600;
-}
 
-.main-nav a:hover {
-    color: var(--primary)
-}
 
 @media (min-width:768px) {
     .main-nav {
@@ -688,7 +679,7 @@ body.admin {
     }
 }
 
-/* -------- PÁGINA CATÁLOGO DE PRODUCTOS- products.php -------- */
+/* -------- PÁGINA CATÁLOGO DE PRODUCTOS- index.php -------- */
 
 .products-section {
     padding: 48px 0 64px;
@@ -1087,6 +1078,7 @@ body.admin {
     border-radius: 8px;
     font-weight: 600;
     transition: 0.2s ease;
+    margin-top: 36px;
 }
 
 .thankyou-btn:hover {

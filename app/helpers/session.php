@@ -40,7 +40,7 @@ function isSessionInit()
             header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/admin.php?e=auth');
             exit;
         } else if ($_SESSION['role'] === 'client') {
-            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/products.php?e=auth');
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/index.php?e=auth');
             exit;
         }
     }
@@ -68,6 +68,5 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = []; 
-    // [ id_product => ['id','name','img','price','qty'] ]
+    $_SESSION['cart'] = [];     
 }
