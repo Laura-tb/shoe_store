@@ -31,7 +31,7 @@ if ($user && $pass === $user['pass_hash']) {
     if ($user['role'] === 'admin') {
         header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/admin.php');
     } else {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/products.php');
+        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/index.php');
     }
     exit;
 } else {
