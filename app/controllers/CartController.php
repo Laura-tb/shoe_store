@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../models/ProductModel.php';
-require_once __DIR__ . '/../models/CartModel.php';
+require_once __DIR__ . '/../models/OrderModel.php';
 
 class CartController
 {
@@ -40,6 +40,8 @@ class CartController
      */
     public function updateQty(int $productId, int $qty): void
     {
+        $product = ProductModel::getById($this->db, $productId);
+
         if (!isset($_SESSION['cart'][$productId])) {
             return;
         }
@@ -49,7 +51,9 @@ class CartController
             return;
         }
 
-        $_SESSION['cart'][$productId]['qty'] = $qty;
+        if ($qty <= (int)$product['stock_product']) {
+            $_SESSION['cart'][$productId]['qty'] = $qty;
+        }
     }
 
     /**
@@ -115,14 +119,17 @@ class CartController
             return false;
         }
 
-        $ok = CartModel::createOrder($this->db, $userId, $_SESSION['cart']);
+        $orderId = OrderModel::createOrder($this->db, $userId, $_SESSION['cart']);
 
-        if ($ok) {
-            $_SESSION['cart'] = [];
-            header('Location: thankyou.php');
-            exit;
+        if ($orderId === null) {
+            return false;
         }
 
-        return false;
+        $_SESSION['cart'] = [];
+        $_SESSION['last_order_id'] = $orderId;
+        
+
+        header('Location: thankyou.php');
+        exit;
     }
 }

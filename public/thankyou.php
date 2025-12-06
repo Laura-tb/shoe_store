@@ -1,6 +1,20 @@
 <?php
 require __DIR__ . '/../app/helpers/session.php';
 requireRole('client');
+
+require __DIR__ . '/../app/config/db.php';
+require __DIR__ . '/../app/models/OrderModel.php';
+
+$orderId = $_SESSION['last_order_id'] ?? null;
+
+$order = null;
+$items = [];
+
+if ($orderId) {
+    $order = OrderModel::getById($db, (int)$orderId);
+    $items = OrderModel::getItems($db, (int)$orderId);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +43,49 @@ include('../app/views/layout/head.php');
                             <a class="thankyou-btn" href="products.php">
                                 Volver a la tienda
                             </a>
+                            <div class="order-summary">
+                                <div class="order-summary-header">
+                                    <span>Nº pedido</span>
+                                    <span class="order-summary-id">#<?= (int)$order['id_order'] ?></span>
+                                </div>
+
+                                <div class="order-summary-row">
+                                    <span>Fecha</span>
+                                    <?php
+                                    $date = new DateTime($order['created_at']);
+                                    ?>
+                                    <span><?= $date->format('d/m/Y') ?></span>
+                                </div>
+
+                                <div class="order-summary-row">
+                                    <span>Importe total</span>
+                                    <span><?= number_format((float)$order['total'], 2, ',', '.') ?>€</span>
+                                </div>
+
+                                <div class="order-summary-divider"></div>
+
+                                <div class="order-summary-items-title">Artículos</div>
+
+                                <ul class="order-summary-items">
+                                    <?php foreach ($items as $item): ?>
+                                        <li class="order-summary-item">
+                                            <div class="order-summary-item-name">
+                                                <?= htmlspecialchars($item['name_product']) ?>
+                                            </div>
+                                            <div class="order-summary-item-qty">
+                                                × <?= (int)$item['qty_order_items'] ?>
+                                            </div>
+                                            <div class="order-summary-item-price">
+                                                <?= number_format((float)$item['unit_price_order_items'], 2, ',', '.') ?>€
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+
                         </div>
+
+
                     </div>
 
                 </div>
