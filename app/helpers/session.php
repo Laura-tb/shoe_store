@@ -60,3 +60,14 @@ function isLoggedIn()
     startSession();
     return isset($_SESSION['user_id']);
 }
+
+//Preparar sesión para el carrito
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = []; 
+    // [ id_product => ['id','name','img','price','qty'] ]
+}

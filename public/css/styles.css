@@ -1043,3 +1043,50 @@ body.admin {
     color: var(--muted);
     text-align: center;
 }
+
+/* -------- THANK YOU PAGE -------- */
+
+.thankyou-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.thankyou-card {
+    background: #ffffff;
+    padding: 40px 50px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+}
+
+.thankyou-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.thankyou-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.thankyou-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    color: #fff;
+    background: var(--primary);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.thankyou-btn:hover {
+    background: #222834;
+}
+
