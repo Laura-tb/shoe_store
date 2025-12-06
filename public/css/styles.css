@@ -904,16 +904,19 @@ body.admin {
 
 .cart-item-remove {
     margin-top: 6px;
-    padding: 0;
-    border: 0;
-    background: none;
+    padding: 4px 10px;
+    border: 1px solid #ef4444;
+    background: #fff;
     color: #ef4444;
     font-size: 13px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .cart-item-remove:hover {
-    text-decoration: underline;
+    background: #ef4444;
+    color: #fff;
 }
 
 /* Precio + cantidad */
@@ -1089,4 +1092,79 @@ body.admin {
 .thankyou-btn:hover {
     background: #222834;
 }
+
+.order-summary {
+    margin-top: 30px;
+    padding: 18px 20px;
+    background: #f6f7fb;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.order-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.order-summary-id {
+    font-size: 13px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #e0e7ff;
+}
+
+.order-summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.order-summary-divider {
+    margin: 12px 0;
+    height: 1px;
+    background: #e0e0e8;
+}
+
+.order-summary-items-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.order-summary-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.order-summary-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px dashed #ddd;
+}
+
+.order-summary-item:last-child {
+    border-bottom: none;
+}
+
+.order-summary-item-name {
+    font-weight: 500;
+}
+
+.order-summary-item-qty {
+    text-align: right;
+    color: #666;
+}
+
+.order-summary-item-price {
+    text-align: right;
+    font-weight: 600;
+}
+
 

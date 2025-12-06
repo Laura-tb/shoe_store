@@ -1,11 +1,11 @@
 <?php
 
-class CartModel
+class OrderModel
 {
     /**
      * Crea la orden en ORDERS y sus líneas en ORDER_ITEMS
      */
-    public static function createOrder(mysqli $db, int $userId, array $cart): bool
+    public static function createOrder(mysqli $db, int $userId, array $cart)
     {
         if (empty($cart)) {
             return false;
@@ -99,10 +99,47 @@ class CartModel
             $stmtStock->close();
 
             $db->commit();
-            return true;
+            return $orderId;
+
         } catch (Throwable $e) {
             $db->rollback();
             return false;
         }
+    }
+
+    public static function getById(mysqli $db, int $orderId): ?array
+    {
+        $stmt = $db->prepare(
+            'SELECT id_order, user_id, total, created_at
+             FROM orders
+             WHERE id_order = ?'
+        );
+        $stmt->bind_param('i', $orderId);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $order = $res->fetch_assoc();
+        $stmt->close();
+
+        return $order ?: null;
+    }
+
+    public static function getItems(mysqli $db, int $orderId): array
+    {
+        $stmt = $db->prepare(
+            'SELECT oi.product_id,
+                    oi.qty_order_items,
+                    oi.unit_price_order_items,
+                    p.name_product
+             FROM order_items oi
+             JOIN products p ON p.id_product = oi.product_id
+             WHERE oi.order_id = ?'
+        );
+        $stmt->bind_param('i', $orderId);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $items = $res->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $items;
     }
 }
