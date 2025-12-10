@@ -73,6 +73,7 @@ include('layout/head.php');
         include('layout/footer.php');
         ?>
     </div>
+    <script src="js/app.js"></script>
 </body>
 
 </html>

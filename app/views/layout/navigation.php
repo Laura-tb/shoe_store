@@ -8,16 +8,28 @@ $role = $_SESSION['role'] ?? null;
     <div class="container">
         <div class="header-bar">
             <div class="brand">
-                <a href="index.php">
+                <a href="index.php" class="brand-link">
                     <div class="brand-icon" aria-hidden="true">
                         <!--IMAGEN DEL LOGO-->
-                        <img src="img/logo.svg">
+                        <img src="img/logo.svg" alt="RunLabs">
                     </div>
                 </a>
             </div>
 
-            <nav class="main-nav" aria-label="Principal">
+            <!-- Botón burger (mobile) -->
+            <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
 
+            <nav class="main-nav" aria-label="Principal">
+                <ul class="nav-list">
+                    <li><a href="#">Mujer</a></li>
+                    <li><a href="#">Hombre</a></li>
+                    <li><a href="#">Niños</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
             </nav>
 
             <div class="header-actions">

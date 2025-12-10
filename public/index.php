@@ -125,6 +125,7 @@ include('../app/views/layout/head.php');
         ?>
     </div>
 
+    <script src="js/app.js"></script>
 </body>
 
 </html>

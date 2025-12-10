@@ -68,6 +68,7 @@ include('../app/views/layout/head.php');
         include('../app/views/layout/footer.php');
         ?>
     </div>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
