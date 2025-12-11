@@ -183,9 +183,9 @@ h1 {
 
 .btn-light:hover {
     background: #e0ffef;         
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: 0 0 6px rgba(34,197,94,0.35);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 16px 35px rgba(0,0,0,0.08);
 }
 
 .btn-lg {

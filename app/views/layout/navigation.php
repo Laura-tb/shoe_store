@@ -98,7 +98,7 @@ $role = $_SESSION['role'] ?? null;
                             <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
                         </svg>
                     </button>
-                    <!--<button class="btn btn-primary btn-lg" onclick="window.location.href='register-start.php'">Registrarse</button>    -->
+                
                 <?php endif; ?>
 
 
