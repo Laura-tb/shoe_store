@@ -20,7 +20,7 @@
 
   // Mensajes globales
   if (params.get('registered'))
-    showToast('success', 'Registro correcto. Inicia sesión.');
+    showToast('success', 'Creado correctamente.');
   if (params.get('ok') === '1' && location.pathname.endsWith('login.php')) {
     showToast('success', 'Has iniciado sesión correctamente.');
   }
@@ -39,6 +39,8 @@
         'error',
         'La contraseña debe tener mínimo 8 caracteres, mayúscula, minúscula, número y carácter especial.'
       );
+    } else if (e === 'product_used') {
+      showToast('error', 'Este producto no se puede borrar, se está utilizando en un pedido.');
     } else {
       showToast('error', 'Ha ocurrido un error.');
     }
@@ -47,15 +49,15 @@
 
 //ABRIR/CERRAR MENU BURGER
 document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.querySelector('.nav-toggle');
-    const nav    = document.querySelector('.main-nav');
-    if (!toggle || !nav) return;
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (!toggle || !nav) return;
 
-    toggle.addEventListener('click', () => {
-        const isOpen = nav.classList.toggle('open');
-        toggle.classList.toggle('open', isOpen);
-        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 });
 
 // VALIDACIÓN DE FORMULARIOS
