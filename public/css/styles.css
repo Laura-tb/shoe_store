@@ -8,7 +8,7 @@
     --muted: #6b7280;
     --card: #ffffff;
     --card_admin: #dbdee4;
-    --shadow: 0 18px 45px rgba(15,23,42,.12);
+    --shadow: 0 18px 45px rgba(15, 23, 42, .12);
     --radius: 16px;
     --radius-lg: 24px;
     --container: 1300px;
@@ -169,9 +169,9 @@ h1 {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #1d4ed8, #16a34a); 
+    background: linear-gradient(135deg, #1d4ed8, #16a34a);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .btn-light {
@@ -182,15 +182,15 @@ h1 {
 }
 
 .btn-light:hover {
-    background: #e0ffef;         
+    background: #e0ffef;
     border-color: var(--primary);
     color: var(--primary);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08);
 }
 
 .btn-lg {
-    --h: 48px;
-    padding: 0 24px;
+    --h: 34px;
+    padding: 0 8px;
     font-size: 16px
 }
 
@@ -633,15 +633,19 @@ body.admin {
 
 /* ---------- TABLA DE USUARIOS/PRODUCTOS ---------- */
 
-.user-table {
+.table {
     min-width: 720px;
     width: 100%;
     border-collapse: collapse;
     font-size: 12px;
 }
 
+.table.orders {
+    min-width: 0;
+}
+
 /* cabecera */
-.user-table th {
+.table th {
     padding: 8px 10px;
     background: #f9fafb;
     font-size: 10px;
@@ -650,31 +654,35 @@ body.admin {
 }
 
 /* filas */
-.user-table td {
+.table td {
     padding: 8px 10px;
     text-align: left;
     border-bottom: 1px solid #f1f5f9;
 }
 
-.user-table tr:nth-child(even) {
+.table.orders td {
+    text-align: center;
+}
+
+.table tr:nth-child(even) {
     background-color: #fcfdff;
 }
 
-.user-table tr:hover {
+.table tr:hover {
     background-color: #eff6ff;
 }
 
 /* columna acciones */
-.user-table td:last-child a {
+.table td:last-child a {
     font-size: 12px;
 }
 
 /*Eliminar usuario*/
-.user-table td:last-child a:last-child {
+.btn-red {
     color: #ef4444;
 }
 
-.user-table td:last-child a:hover {
+.table td:last-child a:hover {
     text-decoration: underline;
 }
 
@@ -723,9 +731,9 @@ body.admin {
     transition: transform .18s ease, box-shadow .18s ease;
 }
 
-.product-card:hover {   
+.product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 35px rgba(0,0,0,0.14);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.14);
 }
 
 .product-image-wrapper {
@@ -780,7 +788,8 @@ body.admin {
 }
 
 .add-cart-btn {
-    background: linear-gradient(135deg, var(--primary), var(--accent)); /* azul → verde */
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    /* azul → verde */
     color: #fff;
     border: none;
     width: 40px;
@@ -792,13 +801,14 @@ body.admin {
     cursor: pointer;
     font-size: 18px;
     transition: all .2s ease;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 .add-cart-btn:hover {
-    background: linear-gradient(135deg, #1d4ed8, #22c55e); /* más contraste */
+    background: linear-gradient(135deg, #1d4ed8, #22c55e);
+    /* más contraste */
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 
 .add-cart-btn:active {
@@ -869,7 +879,7 @@ body.admin {
 .cart-items-card,
 .cart-summary {
     width: 88%;
-    border-top: 3px solid rgba(37,99,235,.12);
+    border-top: 3px solid rgba(37, 99, 235, .12);
 }
 
 .cart-item {
@@ -1071,7 +1081,7 @@ input[type="number"] {
 .cart-summary-btn:hover {
     background: linear-gradient(135deg, #1d4ed8, #16a34a);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .cart-summary-note {
@@ -1308,21 +1318,21 @@ input[type="number"] {
         margin-bottom: 40px;
     }
 
-    .user-table {
+    .table {
         min-width: 100%;
         font-size: 14px;
     }
 
-    .user-table th {
+    .table th {
         padding: 12px 16px;
         font-size: 11px;
     }
 
-    .user-table td {
+    .table td {
         padding: 10px 16px;
     }
 
-    .user-table td:last-child a {
+    .table td:last-child a {
         margin: 0 5px;
     }
 
