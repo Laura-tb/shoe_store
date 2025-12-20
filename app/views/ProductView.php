@@ -29,7 +29,7 @@ include('layout/head.php');
                     <a href="products_create.php">Crear producto</a>
                 </div>
                 <div class="container">
-                    <table class="user-table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -52,7 +52,7 @@ include('layout/head.php');
                                     <td><?= $p['created_at'] ?></td>
                                     <td>
                                         <a href="products_update.php?id_product=<?= $p['id_product'] ?>">Editar</a>
-                                        <a href="products_delete.php?id_product=<?= $p['id_product'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
+                                        <a class="btn-red" href="products_delete.php?id_product=<?= $p['id_product'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

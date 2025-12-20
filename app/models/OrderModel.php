@@ -100,7 +100,6 @@ class OrderModel
 
             $db->commit();
             return $orderId;
-
         } catch (Throwable $e) {
             $db->rollback();
             return false;
@@ -141,5 +140,61 @@ class OrderModel
         $stmt->close();
 
         return $items;
+    }
+
+    public static function getItemsImg(mysqli $db, int $orderId): array
+    {
+        $stmt = $db->prepare(
+            'SELECT oi.product_id,
+                    oi.qty_order_items,
+                    oi.unit_price_order_items,
+                    p.name_product,
+                    p.image_product AS image_product
+             FROM order_items oi
+             JOIN products p ON p.id_product = oi.product_id
+             WHERE oi.order_id = ?'
+        );
+        $stmt->bind_param('i', $orderId);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $items = $res->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
+
+        return $items;
+    }
+
+    /*Función obtener datos de pedidos por UserId*/
+    public static function getByUserId(mysqli $db, int $userId): ?array
+    {
+        $stmt = $db->prepare(
+            'SELECT id_order, user_id, total, created_at
+             FROM orders
+             WHERE user_id = ?
+             ORDER BY created_at DESC'
+        );
+        $stmt->bind_param('i', $userId);
+        $stmt->execute();
+
+        $res = $stmt->get_result();
+        $orders = $res->fetch_all(MYSQLI_ASSOC);
+
+        $stmt->close();
+
+        return $orders;
+    }
+
+    public static function getOrderByIdAndUserId(mysqli $db, int $orderId, int $userId): ?array
+    {
+        $stmt = $db->prepare(
+            'SELECT id_order, user_id, total, created_at
+         FROM orders
+         WHERE id_order = ? AND user_id = ?'
+        );
+        $stmt->bind_param('ii', $orderId, $userId);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $order = $res->fetch_assoc();
+        $stmt->close();
+        return $order ?: null;
     }
 }

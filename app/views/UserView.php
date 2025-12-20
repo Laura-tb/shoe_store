@@ -29,7 +29,7 @@ include('layout/head.php');
                     <a href="users_create.php">Crear usuario</a>
                 </div>
                 <div class="container">
-                    <table class="user-table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -54,7 +54,7 @@ include('layout/head.php');
                                     <td><?= $u['created_at'] ?></td>
                                     <td>
                                         <a href="users_update.php?id=<?= $u['id'] ?>">Editar</a>
-                                        <a href="users_delete.php?id=<?= $u['id'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
+                                        <a class="btn-red" href="users_delete.php?id=<?= $u['id'] ?>" onclick="return confirm('¿Eliminar?');">Eliminar</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
