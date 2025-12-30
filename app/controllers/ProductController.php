@@ -8,7 +8,7 @@
 -->
 
 <?php
-require __DIR__ . '/../config/db.php';
+
 require __DIR__ . '/../models/ProductModel.php';
 
 $products = ProductModel::getAll($db);

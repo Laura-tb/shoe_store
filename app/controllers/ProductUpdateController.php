@@ -1,7 +1,6 @@
 <!-- CONTROLADOR -->
 
 <?php
-require __DIR__ . '/../config/db.php';
 require __DIR__ . '/../models/ProductModel.php';
 
 $id_product = intval($_GET['id_product'] ?? 0);

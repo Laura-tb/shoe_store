@@ -1,7 +1,6 @@
 <!-- CONTROLADOR -->
 
 <?php
-require __DIR__ . '/../config/db.php';
 require __DIR__ . '/../models/UserModel.php';
 
 $id = intval($_GET['id'] ?? 0);
