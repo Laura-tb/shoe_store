@@ -38,7 +38,20 @@ class UserModel
              WHERE id = ?"
         );
         $stmt->bind_param("sssssi", $name, $surname, $email, $pass_hash, $role, $id);
-        return $stmt->execute();
+        try {
+            $stmt->execute();
+            $stmt->close();
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?registered=1');
+            exit;
+        } catch (mysqli_sql_exception $ex) {
+            $stmt->close();
+            if ((int)$ex->getCode() === 1062) {
+                header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=dup');
+            } else {
+                header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=err');
+            }
+            exit;
+        }
     }
 
     public static function delete(mysqli $db, int $id): bool
@@ -49,24 +62,53 @@ class UserModel
     }
 
     public static function create(
-    mysqli $db,
-    string $email,
-    string $name,
-    string $surname,    
-    string $pass_hash,
-    string $role
-): bool {
-    $stmt = $db->prepare(
-        "INSERT INTO users (email, name, surname, pass_hash, role, created_at)
+        mysqli $db,
+        string $email,
+        string $name,
+        string $surname,
+        string $pass_hash,
+        string $role
+    ): bool {
+        $stmt = $db->prepare(
+            "INSERT INTO users (email, name, surname, pass_hash, role, created_at)
          VALUES (?, ?, ?, ?, ?, NOW())"
-    );
-    $stmt->bind_param("sssss", $email, $name, $surname, $pass_hash, $role);
-    return $stmt->execute();
-}
+        );
+        $stmt->bind_param("sssss", $email, $name, $surname, $pass_hash, $role);
+        var_dump($stmt);
+        try {
+            $stmt->execute();
+            $stmt->close();
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?registered=1');
+            exit;
+        } catch (mysqli_sql_exception $ex) {
+            $stmt->close();
+            if ((int)$ex->getCode() === 1062) {
+                header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=dup');
+            } else {
+                header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=err');
+            }
+            exit;
+        }
+    }
 
-    public static function existsByEmail($db, $email) {
+    public static function existsByEmail($db, $email)
+    {
         $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
         return $stmt->fetch() ? true : false;
+    }
+
+    public static function getByEmail(mysqli $db, string $email): ?array
+    {
+        $stmt = $db->prepare(
+            'SELECT id, role, pass_hash FROM users WHERE email = ? LIMIT 1'
+        );
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $res  = $stmt->get_result();
+        $user = $res->fetch_assoc();
+        $stmt->close();
+
+        return $user ?: null;
     }
 }

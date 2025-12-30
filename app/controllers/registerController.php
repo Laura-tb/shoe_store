@@ -1,38 +1,44 @@
 <?php
-require __DIR__ . '/../config/db.php';
 
-$email   = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-$name    = trim($_POST['name'] ?? '');
-$surname = trim($_POST['surname'] ?? '');
-$pass    = $_POST['password'] ?? '';
+require_once __DIR__ . '/../models/UserModel.php';
 
-//Validar datos
-$pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+class RegisterController
+{
+    public static function register(mysqli $db): void
+    {
 
-if (!$email || !$name || !$surname) {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=val');
-    exit;
-}
-if (!preg_match($pattern, $pass)) {
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=pass');
-    exit;
-}
+        // Si no es POST → mostrar formulario
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            require __DIR__ . '/../views/RegisterView.php';
+            return;
+        }
 
-// Inserta en texto plano (solo para desarrollo)
-$stmt = $db->prepare('INSERT INTO users (email, name, surname, pass_hash) VALUES (?, ?, ?, ?)');
-$stmt->bind_param('ssss', $email, $name, $surname, $pass);
+        $email   = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+        $name    = trim($_POST['name'] ?? '');
+        $surname = trim($_POST['surname'] ?? '');
+        $pass    = $_POST['password'] ?? '';
 
-try {
-    $stmt->execute();
-    $stmt->close();
-    header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?registered=1');
-    exit;
-} catch (mysqli_sql_exception $ex) {
-    $stmt->close();
-    if ((int)$ex->getCode() === 1062) {
+        //Validar datos
+        $pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/';
+
+        if (!$email || !$name || !$surname) {
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=val');
+            exit;
+        }
+        if (!preg_match($pattern, $pass)) {
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=pass');
+            exit;
+        }
+
+        $user = UserModel::create($db, $email, $name, $surname, $pass, 'client');
+
+        if ($user) {
+            header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?registered=1');
+            exit;
+        }
+
         header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=dup');
-    } else {
-        header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/register-start.php?e=err');
+        exit;
+
     }
-    exit;
 }
