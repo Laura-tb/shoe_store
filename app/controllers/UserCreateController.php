@@ -1,7 +1,6 @@
 <!-- CONTROLADOR -->
 
 <?php
-require __DIR__ . '/../config/db.php';
 require __DIR__ . '/../models/UserModel.php';
 
 // Si se envía el formulario

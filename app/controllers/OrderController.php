@@ -8,7 +8,6 @@
 -->
 
 <?php
-require __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../models/OrderModel.php';
 
 
@@ -35,5 +34,22 @@ class OrderController
 
         return ['order' => $order, 'items' => $items];
     }
+    
+    
+
 }
-?>
+
+$userId = $_SESSION['user_id'];
+$action  = $_GET['action'] ?? 'index';
+
+if ($action === 'show') {
+    $orderId = (int)($_GET['id'] ?? 0);
+    $data = OrderController::show($userId, $orderId); 
+    $order = $data['order'];
+    $items = $data['items'];
+    require __DIR__ . '/../views/OrderDetailView.php';
+    exit;
+}
+
+$orders = OrderController::index($userId);
+require __DIR__ . '/../views/OrderView.php';
