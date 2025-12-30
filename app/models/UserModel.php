@@ -64,9 +64,9 @@ class UserModel
     return $stmt->execute();
 }
 
-public static function existsByEmail($db, $email) {
-    $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    return $stmt->fetch() ? true : false;
-}
+    public static function existsByEmail($db, $email) {
+        $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch() ? true : false;
+    }
 }
