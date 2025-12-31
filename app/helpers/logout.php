@@ -1,3 +1,4 @@
+<!-- CIERRE DE SESIÓN -->
 <?php
 require __DIR__ . '/session.php';
 

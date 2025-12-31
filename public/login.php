@@ -1,3 +1,4 @@
+<!-- PUNTO DE ENTRADA LOGIN -->
 <?php
 require __DIR__ . '/../app/helpers/session.php';
 isSessionInit();

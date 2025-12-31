@@ -1,18 +1,16 @@
-<!-- MODELO -->
-<!--
-- Toda la lógica de acceso a tabla users (SELECT, UPDATE, etc).
--->
-
+<!-- MODELO DE USUARIO -->
 
 <?php
 class UserModel
 {
+    //Obtiene todos los usuarios
     public static function getAll(mysqli $db): array
     {
         $res = $db->query("SELECT * FROM users");
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
+    //Obtiene un usuario por su id
     public static function getById(mysqli $db, int $id): ?array
     {
         $stmt = $db->prepare("SELECT id, email, name, surname, role, pass_hash FROM users WHERE id=? LIMIT 1");
@@ -22,7 +20,7 @@ class UserModel
         return $res->fetch_assoc() ?: null;
     }
 
-
+    //Actualiza los datos de un usuario existente
     public static function update(
         mysqli $db,
         int $id,
@@ -54,6 +52,7 @@ class UserModel
         }
     }
 
+    //Elimina un usuario por su id
     public static function delete(mysqli $db, int $id): bool
     {
         $stmt = $db->prepare("DELETE FROM users WHERE id=?");
@@ -61,6 +60,7 @@ class UserModel
         return $stmt->execute();
     }
 
+    //Crea un usuario
     public static function create(
         mysqli $db,
         string $email,
@@ -91,6 +91,7 @@ class UserModel
         }
     }
 
+    //Verifica si existe usuario por su email
     public static function existsByEmail($db, $email)
     {
         $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
@@ -98,6 +99,7 @@ class UserModel
         return $stmt->fetch() ? true : false;
     }
 
+    //Obtiene datos de usuario por su email
     public static function getByEmail(mysqli $db, string $email): ?array
     {
         $stmt = $db->prepare(

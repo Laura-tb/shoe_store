@@ -1,15 +1,14 @@
-<!-- http://localhost/clases_desarrollo_servidor/trabajo_enfoque/backend/public/login.php -->
-
-
+<!-- CONTROLADOR LOGIN -->
 <?php
+// Carga el modelo de usuarios para acceder a la base de datos
 require_once __DIR__ . '/../models/UserModel.php';
 
 class LoginController
 {
+    //Gestiona el proceso de login de usuarios
     public static function login(mysqli $db): void
     {
 
-        // Si no es POST → mostrar formulario
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             require __DIR__ . '/../views/LoginView.php';
             return;
@@ -23,10 +22,11 @@ class LoginController
             exit;
         }
 
+        // Busca el usuario por email en la base de datos
         $user = UserModel::getByEmail($db, $email);
 
         if ($user && $pass === $user['pass_hash']) {
-            // Credenciales correctas
+            // Crea la sesión del usuario autenticado
             createUserSession($user);
 
             if ($user['role'] === 'admin') {
@@ -36,7 +36,7 @@ class LoginController
             }
             exit;
         } else {
-            // Email o contraseña incorrectos
+            // Credenciales incorrectas: email o contraseña no válidos
             header('Location: /clases_desarrollo_servidor/trabajo_enfoque/public/login.php?e=cred');
             exit;
         }

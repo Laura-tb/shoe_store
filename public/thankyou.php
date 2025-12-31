@@ -1,3 +1,4 @@
+<!-- PUNTO DE ENTRADA CONFIRMACIÓN DE PEDIDO-->
 <?php
 require __DIR__ . '/../app/helpers/session.php';
 requireRole('client');

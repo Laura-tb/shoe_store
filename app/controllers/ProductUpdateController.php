@@ -1,6 +1,7 @@
-<!-- CONTROLADOR -->
+<!-- CONTROLADOR EDITAR PRODUCTO -->
 
 <?php
+// Carga el modelo de productos
 require __DIR__ . '/../models/ProductModel.php';
 
 $id_product = intval($_GET['id_product'] ?? 0);
@@ -20,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-    //$image_product    = trim($_POST['image_product'] ?? '');
     $name_product     = trim($_POST['name_product'] ?? '');
 
     $price_raw = str_replace(',', '.', $_POST['price_product'] ?? '0');
@@ -31,13 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Imagen: mantener la actual si no se sube nada
     $image_product = $product['image_product'];
 
-    // ¿Se ha subido una nueva imagen?
+    // Comprueba si se ha subido una nueva imagen correctamente
     if (
         !empty($_FILES['image_product']['tmp_name']) &&
         $_FILES['image_product']['error'] === UPLOAD_ERR_OK
     ) {
 
-        // Borrar la antigua si existe
+        // Borra la imagen anterior del servidor (si existe)
         if (!empty($product['image_product'])) {
             $oldPath = __DIR__ . '/../../public/img/' . $product['image_product'];
             if (is_file($oldPath)) {
@@ -59,14 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Actualizar en BD
+    // Actualiza el producto en base de datos
     ProductModel::update($db, $id_product, $image_product, $name_product, $price_product, $stock_product);
 
     header("Location: admin_products.php");
     exit;
 }
 
-// GET: carga el producto y muestra formulario.
+// GET: carga el producto y muestra el formulario de edición
 $products = ProductModel::getById($db, $id_product);
 if (!$products) {
     header('Location: admin_products.php');
@@ -74,5 +74,5 @@ if (!$products) {
 }
 
 $mode = "";
-
+// Carga la vista de crear/editar producto
 require __DIR__ . '/../views/ProductUpdateView.php';

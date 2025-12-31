@@ -1,3 +1,4 @@
+<!-- PUNTO DE ENTRADA CARRITO-->
 <?php
 
 require __DIR__ . '/../app/helpers/session.php';

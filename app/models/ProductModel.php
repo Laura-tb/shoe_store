@@ -1,17 +1,16 @@
-<!-- MODELO -->
-<!--
-- Toda la lógica de acceso a tabla products (SELECT, UPDATE, etc).
--->
+<!-- MODELO DE PRODUCTO -->
 
 <?php
 class ProductModel
 {
+    //Obtiene todos los productos de la tabla products
     public static function getAll(mysqli $db): array
     {
         $res = $db->query("SELECT * FROM products");
         return $res->fetch_all(MYSQLI_ASSOC);
     }
 
+    //Obtiene un producto por su id
     public static function getById(mysqli $db, int $id_product): ?array
     {
         $stmt = $db->prepare("SELECT id_product, image_product, name_product, price_product, stock_product FROM products WHERE id_product=? LIMIT 1");
@@ -21,7 +20,7 @@ class ProductModel
         return $res->fetch_assoc() ?: null;
     }
 
-
+    //Actualiza los datos de un producto existente
     public static function update(
         mysqli $db,
         int $id_product,
@@ -39,6 +38,7 @@ class ProductModel
         return $stmt->execute();
     }
 
+    //Elimina un producto por su ID
     public static function delete(mysqli $db, int $id_product): bool
     {
         $stmt = $db->prepare("DELETE FROM products WHERE id_product=?");
@@ -46,36 +46,22 @@ class ProductModel
         return $stmt->execute();
     }
 
-    public static function create2(
-        mysqli $db,
-        string $image_product,
-        string $name_product,
-        float $price_product,
-        int $stock_product
-    ): bool {
-        $stmt = $db->prepare(
-            "INSERT INTO products (image_product, name_product, price_product, stock_product, created_at)
-         VALUES (?, ?, ?, ?, NOW())"
-        );
-        $stmt->bind_param("ssss", $image_product, $name_product, $price_product, $stock_product);
-        return $stmt->execute();
-    }
-
-    // INSERT sin imagen (image_product NULL, created_at automático)
+    // Elimina un producto por su ID
     public static function create(mysqli $db, string $name_product, float $price_product, int $stock_product): ?int
     {
         $stmt = $db->prepare("
             INSERT INTO products (name_product, price_product, stock_product)
             VALUES (?, ?, ?)
         ");
-        $stmt->bind_param("sdi", $name_product, $price_product, $stock_product); // s = string, d = decimal, i = int
+        $stmt->bind_param("sdi", $name_product, $price_product, $stock_product); 
 
         if (!$stmt->execute()) {
             return null;
         }
-        return $db->insert_id;        
+        return $db->insert_id;
     }
 
+    //Actualiza únicamente el nombre del archivo de imagen del producto
     public static function updateImage(mysqli $db, int $id, string $fileName): bool
     {
         $stmt = $db->prepare("

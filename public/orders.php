@@ -1,9 +1,4 @@
-<!-- HISTORIAL DE PEDIDOS (Punto de entrada-->
-<!--
-- Comprueba que la sesión existe y que el rol es client.
-- Llama al controlador de pedidos.
-- No tiene HTML ni lógica de negocio. 
--->
+<!-- PUNTO DE ENTRADA PEDIDOS-->
 
 <?php
 require __DIR__ . '/../app/helpers/session.php';

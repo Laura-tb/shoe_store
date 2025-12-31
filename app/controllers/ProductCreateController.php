@@ -1,29 +1,27 @@
-<!-- CONTROLADOR -->
+<!-- CONTROLADOR CREAR PRODUCTO -->
 
 <?php
+// Carga el modelo de productos
 require __DIR__ . '/../models/ProductModel.php';
 
-// Si se envía el formulario
+// Si el formulario ha sido enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //$image_product    = trim($_POST['image_product'] ?? '');
+
     $name_product     = trim($_POST['name_product'] ?? '');
 
-    $price_raw  = str_replace(',', '.', $_POST['price_product'] ?? '0'); //Convertir coma a punto
-    $price_product = number_format((float)$price_raw, 2, '.', ''); //Convertir a float y mantener 2 decimales
+    $price_raw  = str_replace(',', '.', $_POST['price_product'] ?? '0');
+    $price_product = number_format((float)$price_raw, 2, '.', ''); 
     
     $stock_product = (int)($_POST['stock_product'] ?? 0);
 
-    // Crear producto
-    //ProductModel::create($db, $image_product, $name_product, $price_product, $stock_product);
-
-    // Crear producto sin imagen
+    // Crea el producto en base de datos sin imagen
     $id = ProductModel::create($db, $name_product, $price_product, $stock_product);
 
     if (!$id) {
         exit('Error al crear producto');
     }
 
-    // Procesar imagen 
+    // Procesa la imagen del producto si se ha subido correctamente
     if (
         !empty($_FILES['image_product']['tmp_name']) &&
         $_FILES['image_product']['error'] === UPLOAD_ERR_OK
@@ -42,11 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // Redirige al listado de productos con mensaje de éxito
     header('Location: admin_products.php?registered=1');
     exit;
 }
 
-// Modo creación → $product vacío
+// Modo creación: inicializa el producto vacío para la vista
 $products = [
     'id_product'        => null,
     'image_product'     => '',
@@ -57,4 +56,5 @@ $products = [
 
 $mode = "create";
 
+// Carga la vista de creación / edición de producto
 require __DIR__ . '/../views/ProductUpdateView.php';

@@ -1,3 +1,4 @@
+<!-- PUNTO DE ENTRADA ELIMINAR PRODUCTO-->
 <?php
 
 require __DIR__ . '/../app/helpers/session.php';

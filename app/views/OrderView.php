@@ -1,8 +1,4 @@
-<!-- VISTA LISTADO -->
-<!-- 
-- Solo presentación (HTML).
-- No hace consultas a BD ni redirecciones.
--->
+<!-- VISTA HISTORIAL DE PEDIDOS -->
 
 <!DOCTYPE html>
 

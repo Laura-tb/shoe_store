@@ -1,3 +1,4 @@
+<!-- VISTA DETALLE DE PEDIDO-->
 <!DOCTYPE html>
 
 <html lang="es">

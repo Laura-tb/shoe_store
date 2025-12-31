@@ -1,3 +1,6 @@
+<!-- CONTROLADOR CARRITO -->
+<!-- Gestiona las operaciones del carrito: añadir productos, actualizar cantidades,
+ eliminar ítems, calcular totales y finalizar el pedido (checkout).-->
 <?php
 
 require_once __DIR__ . '/../models/ProductModel.php';
@@ -12,9 +15,7 @@ class CartController
         $this->db = $db;
     }
 
-    /**
-     * Añadir un producto al carrito
-     */
+    //Añadir un producto al carrito
     public function add(int $productId): void
     {
         $product = ProductModel::getById($this->db, $productId);
@@ -23,7 +24,6 @@ class CartController
             return;
         }
 
-        //evitar añadir si no hay stock
         if ((int)$product['stock_product'] <= 0) {
             return;
         }
@@ -35,9 +35,7 @@ class CartController
         }
     }
 
-    /**
-     * Actualizar cantidad (+ / -)
-     */
+    //Actualizar cantidad
     public function updateQty(int $productId, int $qty): void
     {
         $product = ProductModel::getById($this->db, $productId);
@@ -56,18 +54,13 @@ class CartController
         }
     }
 
-    /**
-     * Eliminar un producto del carrito
-     */
+    //Eliminar un producto del carrito
     public function remove(int $productId): void
     {
         unset($_SESSION['cart'][$productId]);
     }
 
-    /**
-     * Obtener información completa del carrito
-     * (datos de sesión + datos reales de la BBDD)
-     */
+    //Obtener información completa del carrito
     public function getCart(): array
     {
         $items = [];
@@ -95,9 +88,7 @@ class CartController
         return $items;
     }
 
-    /**
-     * Calcular total del carrito
-     */
+    //Calcular total del carrito
     public function getTotal(): float
     {
         $items = $this->getCart();
@@ -110,9 +101,7 @@ class CartController
         return $total;
     }
 
-    /**
-     * Checkout: insertar en DB (ORDERS + ORDER_ITEMS)
-     */
+    //Checkout: insertar en DB (ORDERS + ORDER_ITEMS)
     public function checkout(int $userId): bool
     {
         if (empty($_SESSION['cart'])) {
@@ -134,6 +123,7 @@ class CartController
     }
 }
 
+// Instancia del controlador del carrito
 $cartController = new CartController($db);
 
 // Gestionar acciones del formulario
@@ -152,8 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'remove':
             $cartController->remove($productId);
             break;
-        case 'checkout':
-            // pasamos el id de usuario al controlador
+        case 'checkout':            
             $cartController->checkout((int)$_SESSION['user_id']);
             break;
     }
@@ -162,8 +151,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
+// Datos necesarios para la vista
 $cartItems = $cartController->getCart();
 $total     = $cartController->getTotal();
 
-// Render vista
+// Carga la vista del carrito
 require __DIR__ . '/../views/CartView.php';

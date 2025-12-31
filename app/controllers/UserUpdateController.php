@@ -1,6 +1,8 @@
-<!-- CONTROLADOR -->
+<!-- CONTROLADOR EDITAR USUARIO -->
 
 <?php
+
+// Carga el modelo de usuarios
 require __DIR__ . '/../models/UserModel.php';
 
 $id = intval($_GET['id'] ?? 0);
@@ -10,7 +12,7 @@ if ($id <= 0) {
     exit;
 }
 
-//POST: actualiza en BD y redirige al listado.
+// POST: actualiza el usuario y redirige
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name    = trim($_POST['name'] ?? '');
     $surname = trim($_POST['surname'] ?? '');
@@ -18,17 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass_hash   = trim($_POST['pass_hash'] ?? '');
     $role    = trim($_POST['role'] ?? '');
 
-    /************************************************************* */
-    // ¿AÑADIR MISMAS VALIDACIONES QUE USERCREATECONTROLLER.PHP?
-    /************************************************************** */
-    
+    // Actualiza los datos del usuario en base de datos
     UserModel::update($db, $id, $name, $surname, $email, $pass_hash, $role);
 
     header("Location: admin_users.php");
     exit;
 }
 
-//GET: carga el usuario y muestra formulario.
+// GET: carga los datos del usuario y muestra el formulario de edición
 $user = UserModel::getById($db, $id);
 if (!$user) {
     header('Location: admin_users.php');
@@ -36,5 +35,5 @@ if (!$user) {
 }
 
 $mode = "";
-
+// Carga la vista de crear/editar usuario
 require __DIR__ . '/../views/UserUpdateView.php';

@@ -1,8 +1,4 @@
-<!-- VISTA LISTADO -->
-<!-- 
-- Solo presentación (HTML + uso de $products).
-- No hace consultas a BD ni redirecciones.
---> 
+<!-- VISTA LISTADO DE PRODUCTOS-->
 
 <!DOCTYPE html>
 

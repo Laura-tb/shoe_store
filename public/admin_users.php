@@ -1,10 +1,4 @@
-<!-- http://localhost/trabajo_enfoque/public/admin_users.php -->
-<!-- LISTADO DE USUARIOS (Punto de entrada-->
-<!--
-- Comprueba que la sesión existe y que el rol es admin.
-- Llama al controlador de usuarios.
-- No tiene HTML ni lógica de negocio. 
--->
+<!-- PUNTO DE ENTRADA GESTIÓN DE USUARIOS -->
 
 <?php
 

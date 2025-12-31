@@ -1,10 +1,9 @@
+<!-- MODELO DE PEDIDO -->
 <?php
 
 class OrderModel
 {
-    /**
-     * Crea la orden en ORDERS y sus líneas en ORDER_ITEMS
-     */
+    //Crea el pedido en ORDERS y sus líneas en ORDER_ITEMS
     public static function createOrder(mysqli $db, int $userId, array $cart)
     {
         if (empty($cart)) {
@@ -14,7 +13,7 @@ class OrderModel
         $db->begin_transaction();
 
         try {
-            // 1) Calcular total y obtener precios actualizados
+            // Calcular total y obtener precios actualizados
             $total = 0;
             $productsData = [];
 
@@ -51,7 +50,7 @@ class OrderModel
                 return false;
             }
 
-            // 2) Insertar en ORDERS
+            // Insertar en ORDERS
             $stmtOrder = $db->prepare(
                 'INSERT INTO orders (user_id, total, created_at)
                  VALUES (?, ?, NOW())'
@@ -61,7 +60,7 @@ class OrderModel
             $orderId = $db->insert_id;
             $stmtOrder->close();
 
-            // 3) Insertar líneas en ORDER_ITEMS
+            // Insertar líneas en ORDER_ITEMS
             $stmtItem = $db->prepare(
                 'INSERT INTO order_items
                     (order_id, product_id, qty_order_items, unit_price_order_items)
@@ -76,7 +75,6 @@ class OrderModel
             );
 
             foreach ($productsData as $p) {
-                // línea pedido
                 $stmtItem->bind_param(
                     'iiid',
                     $orderId,
@@ -86,7 +84,6 @@ class OrderModel
                 );
                 $stmtItem->execute();
 
-                // actualizar stock
                 $stmtStock->bind_param(
                     'ii',
                     $p['qty'],
@@ -106,6 +103,7 @@ class OrderModel
         }
     }
 
+    //Obtiene un pedido por ID (sin validar usuario).
     public static function getById(mysqli $db, int $orderId): ?array
     {
         $stmt = $db->prepare(
@@ -122,6 +120,7 @@ class OrderModel
         return $order ?: null;
     }
 
+    //Obtiene las líneas de un pedido (incluye nombre de producto).
     public static function getItems(mysqli $db, int $orderId): array
     {
         $stmt = $db->prepare(
@@ -142,6 +141,7 @@ class OrderModel
         return $items;
     }
 
+    //Obtiene las líneas de un pedido incluyendo imagen del producto.
     public static function getItemsImg(mysqli $db, int $orderId): array
     {
         $stmt = $db->prepare(
@@ -163,7 +163,7 @@ class OrderModel
         return $items;
     }
 
-    /*Función obtener datos de pedidos por UserId*/
+    //Obtiene todos los pedidos de un usuario, ordenados del más reciente al más antiguo.
     public static function getByUserId(mysqli $db, int $userId): ?array
     {
         $stmt = $db->prepare(
@@ -183,6 +183,7 @@ class OrderModel
         return $orders;
     }
 
+    //Obtiene un pedido validando que pertenece al usuario indicado.
     public static function getOrderByIdAndUserId(mysqli $db, int $orderId, int $userId): ?array
     {
         $stmt = $db->prepare(

@@ -1,3 +1,4 @@
+<!-- PUNTO DE ENTRADA REGISTRO-->
 <?php
 require __DIR__ . '/../app/helpers/session.php';
 startSession();

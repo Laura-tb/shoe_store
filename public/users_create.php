@@ -1,9 +1,4 @@
-<!-- CREAR USUARIOS (Punto de entrada) -->
-<!-- http://localhost/trabajo_enfoque/public/users_create.php -->
-<!--
-- Protege la página por rol admin.
-- Llama al controlador de crear.
--->
+<!-- PUNTO DE ENTRADA CREAR USUARIO-->
 <?php
 
 require __DIR__ . '/../app/helpers/session.php';

@@ -1,4 +1,4 @@
-<!--  http://localhost/clases_desarrollo_servidor/trabajo_enfoque/public/index.php -->
+<!-- PUNTO DE ENTRADA HOME-->
 <?php
 require __DIR__ . '/../app/helpers/session.php';
 startSession();

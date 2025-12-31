@@ -1,6 +1,7 @@
-<!-- CONTROLADOR -->
+<!-- CONTROLADOR CREAR USUARIO-->
 
 <?php
+// Carga el modelo de usuarios
 require __DIR__ . '/../models/UserModel.php';
 
 // Si se envía el formulario
@@ -52,4 +53,5 @@ $user = [
 
 $mode = "create";
 
+// Carga la vista de creación / edición de usuario
 require __DIR__ . '/../views/UserUpdateView.php';

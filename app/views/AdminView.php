@@ -1,3 +1,4 @@
+<!-- VISTA GESTOR ADMIN -->
 <!DOCTYPE html>
 
 <html lang="es">

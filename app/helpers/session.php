@@ -1,7 +1,7 @@
+<!-- GESTOR DE SESIONES -->
 <?php
 
-// Inicia sesión si no está iniciada. 
-//PENDIENTE SACAR DE FUNCIÓN Y PONER AL PRINCIPIO DE SESSION.PHP
+// Inicia sesión si no está iniciada (evita errores por session_start repetido)
 function startSession()
 {
     if (session_status() === PHP_SESSION_NONE) {
@@ -19,7 +19,7 @@ function createUserSession($user)
     $_SESSION['role']      = $user['role'];
 }
 
-// Verifica que el usuario tenga el rol requerido. Si el rol en sesión no coincide, redirige al usuario a la página principal e impide continuar la ejecución.
+// Restringe el acceso a una página según rol
 function requireRole(string $role): void
 {
     startSession();
@@ -30,7 +30,7 @@ function requireRole(string $role): void
     }
 }
 
-// Comprueba si la sesión está iniciada y, si existe el role en sesión, redirige al usuario a su página correspondiente según su rol (admin o client).
+// Si ya hay sesión iniciada, redirige al usuario a su área según rol
 function isSessionInit()
 {
     startSession();
@@ -46,7 +46,7 @@ function isSessionInit()
     }
 }
 
-// Logout
+// Cierra sesión: elimina datos y destruye la sesión
 function logout()
 {
     startSession();
@@ -54,15 +54,15 @@ function logout()
     session_destroy();
 }
 
-// TEST- Comprueba si hay sesión iniciada- TEST
+// TEST- // Comprueba si el usuario está autenticado
 function isLoggedIn()
 {
     startSession();
     return isset($_SESSION['user_id']);
 }
 
-//Preparar sesión para el carrito
-
+// --- Sesión del carrito ---
+// Asegura que la sesión esté iniciada (para usar $_SESSION['cart'])
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
