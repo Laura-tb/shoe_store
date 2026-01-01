@@ -3,10 +3,15 @@
 // Configura MySQLi para lanzar excepciones y mostrar errores graves
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-$cfgFile = __DIR__ . '/config.local.php';
+//InfinityFree
+$isInfinityFree = isset($_SERVER['HTTP_HOST']) && (
+  str_contains($_SERVER['HTTP_HOST'], 'infinityfreeapp.com') 
+);
+
+$cfgFile = __DIR__ . ($isInfinityFree ? '/config.prod.php' : '/config.local.php');
 
 if (!file_exists($cfgFile)) {
-    die('Falta config.local.php');
+  die('Falta ' . basename($cfgFile));
 }
 require $cfgFile;
 

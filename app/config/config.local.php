@@ -1,4 +1,4 @@
-<!-- DATOS DE ACCESO A BASE DE DATOS -->
+<!-- DATOS DE ACCESO A BASE DE DATOS- XAMPP -->
 <?php
 
 define('DB_HOST', 'localhost');
