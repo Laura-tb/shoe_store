@@ -44,8 +44,6 @@ include('../app/views/layout/head.php');
                         <p class="link-wrap">
                             <a href="register-start.php" class="link">Crear cuenta</a>
                         </p>
-
-
                     </section>
                 </div>
             </section>

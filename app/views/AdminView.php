@@ -23,7 +23,6 @@ include('../app/views/layout/head.php');
                         </p>
                     </div>
 
-                    <!-- Cards -->
                     <div class="admin-grid">
                         <article class="card">
                             <a href="admin_users.php">

@@ -9,13 +9,11 @@ $title = "Gestión de Productos";
 include('layout/head.php');
 ?>
 
-
 <body>
     <div class="page admin_products">
         <?php
         include('layout/navigation.php');
         ?>
-
         <main>
             <section class="hero">
                 <a href="admin.php">Volver</a>
@@ -52,13 +50,11 @@ include('layout/head.php');
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-
                         </tbody>
                     </table>
                 </div>
             </section>
         </main>
-
 
         <?php
         include('layout/footer.php');

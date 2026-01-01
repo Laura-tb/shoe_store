@@ -9,7 +9,6 @@ $title = "Edición de Productos";
 include('layout/head.php');
 ?>
 
-
 <body>
     <div class="page login">
         <?php
@@ -18,10 +17,7 @@ include('layout/head.php');
 
         <main>
             <section class="hero">
-                
-
                 <div class="container">
-                    
                     <section class="card">
                         <a href="admin_products.php">Volver</a>
 
@@ -29,7 +25,6 @@ include('layout/head.php');
 
                         <form method="POST" id="product-form" enctype="multipart/form-data" data-mode="<?= $mode ?>" novalidate>
 
-                            <!-- Mostrar imagen actual solo al EDITAR -->
                             <?php if ($mode !== 'create' && !empty($products['image_product'])): ?>
                                 <div class="field">
                                     <label>Imagen actual:</label>
@@ -41,7 +36,7 @@ include('layout/head.php');
 
                             <div class="field">
                                 <label>Imagen:
-                                    <input id="image_product" type="file" name="image_product">                                    
+                                    <input id="image_product" type="file" name="image_product">
                                 </label>
                             </div>
                             <div class="field">
@@ -77,7 +72,6 @@ include('layout/head.php');
                 </div>
             </section>
         </main>
-
 
         <?php
         include('layout/footer.php');

@@ -15,7 +15,7 @@ include('../app/views/layout/head.php');
         ?>
 
         <main>
-            <!-- BANNER -->
+            <!-- Banner -->
             <section class="hero">
                 <div class="container">
                     <div class="hero-card"
@@ -30,7 +30,7 @@ include('../app/views/layout/head.php');
                 </div>
             </section>
 
-            <!-- PRODUCT LIST -->
+            <!-- Productos -->
             <section class="products-section">
                 <div class="container">
                     <header class="products-header">
@@ -64,7 +64,7 @@ include('../app/views/layout/head.php');
                                             </h3>
 
                                             <?php if ($isAvailable): ?>
-                                                <!-- SOLO SE MUESTRA EL BOTÓN SI HAY STOCK -->
+                                              
                                                 <form method="post" action="cart.php">
                                                     <input type="hidden" name="action" value="add">
                                                     <input type="hidden" name="product_id"
@@ -82,8 +82,8 @@ include('../app/views/layout/head.php');
                                                         </svg>
                                                     </button>
                                                 </form>
-                                            <?php else: ?>
-                                                <!-- ETIQUETA DE AGOTADO -->
+                                                
+                                            <?php else: ?>                                            
                                                 <span class="product-badge-out">Agotado</span>
                                             <?php endif; ?>
                                         </div>

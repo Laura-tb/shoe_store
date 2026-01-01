@@ -31,7 +31,7 @@ include('../app/views/layout/head.php');
 
                             <div class="field">
                                 <label for="name">Nombre</label>
-                                <input id="name" name="name" type="text" placeholder="Tu nombre"/>
+                                <input id="name" name="name" type="text" placeholder="Tu nombre" />
                                 <span class="error" id="nameError"></span>
                             </div>
 
@@ -47,7 +47,6 @@ include('../app/views/layout/head.php');
                                         title="Mínimo 8 caracteres con al menos una letra minúscula, una mayúscula, un carácter especial y un número." />
                                     <span class="error" id="passwordError"></span>
                                 </div>
-
                             </div>
 
                             <button class="btn btn-primary btn-lg" type="submit">Crear cuenta</button>

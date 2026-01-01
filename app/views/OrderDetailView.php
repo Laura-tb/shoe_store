@@ -10,12 +10,12 @@ include('layout/head.php');
 
 
 <body>
-    <div class="page admin_products">
-        <?php
-        include('layout/navigation.php');
-        ?>
+  <div class="page admin_products">
+    <?php
+    include('layout/navigation.php');
+    ?>
 
-         <main>
+    <main>
       <section class="hero">
         <a href="orders.php">Volver</a>
 
@@ -53,8 +53,7 @@ include('layout/head.php');
                         <img
                           src="img/<?= htmlspecialchars($it['image_product']) ?>"
                           alt="<?= htmlspecialchars((string)$it['name_product']) ?>"
-                          style="width:60px; height:auto; border-radius:6px;"
-                        >
+                          style="width:60px; height:auto; border-radius:6px;">
                       <?php else : ?>
                         -
                       <?php endif; ?>
@@ -71,12 +70,11 @@ include('layout/head.php');
       </section>
     </main>
 
-
-        <?php
-        include('layout/footer.php');
-        ?>
-    </div>
-    <script src="js/app.js"></script>
+    <?php
+    include('layout/footer.php');
+    ?>
+  </div>
+  <script src="js/app.js"></script>
 </body>
 
 </html>

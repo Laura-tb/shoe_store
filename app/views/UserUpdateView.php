@@ -9,7 +9,6 @@ $title = "Edición de Usuarios";
 include('layout/head.php');
 ?>
 
-
 <body>
     <div class="page login">
         <?php
@@ -69,7 +68,6 @@ include('layout/head.php');
                 </div>
             </section>
         </main>
-
 
         <?php
         include('layout/footer.php');

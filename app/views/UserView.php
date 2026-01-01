@@ -9,7 +9,6 @@ $title = "Gestión de Usuarios";
 include('layout/head.php');
 ?>
 
-
 <body>
     <div class="page admin_users">
         <?php
@@ -54,16 +53,11 @@ include('layout/head.php');
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-
                         </tbody>
                     </table>
-
-
-
                 </div>
             </section>
         </main>
-
 
         <?php
         include('layout/footer.php');

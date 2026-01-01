@@ -9,7 +9,6 @@ $title = "Historial de pedidos";
 include('layout/head.php');
 ?>
 
-
 <body>
     <div class="page admin_products">
         <?php
@@ -53,11 +52,9 @@ include('layout/head.php');
 
                         </tbody>
                     </table>
-
                 </div>
             </section>
         </main>
-
 
         <?php
         include('layout/footer.php');
